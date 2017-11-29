@@ -29,6 +29,8 @@ rospy.init_node('freeplay_sandbox_supervisor')
 
 blankscreen_publisher = rospy.Publisher('sandtray/signals/blank_interface', Empty, queue_size=1)
 visual_tracking_publisher = rospy.Publisher('sandtray/signals/start_visual_tracking', Empty, queue_size=1)
+prod_quiz_publisher = rospy.Publisher('sandtray/signals/start_prod_quiz', Empty, queue_size=1)
+prod_quiz_num_pub = rospy.Publisher('sandtray/quiz/question', String, queue_size=1)
 items_placement_publisher = rospy.Publisher('sandtray/signals/start_items_placement', Empty, queue_size=1)
 tutorial_publisher = rospy.Publisher('sandtray/signals/start_tutorial', Empty, queue_size=1)
 freeplay_publisher = rospy.Publisher('sandtray/signals/start_freeplay', Empty, queue_size=1)
