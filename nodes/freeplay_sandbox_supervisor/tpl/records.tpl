@@ -21,7 +21,7 @@
 
             <div class="section">
             <h3>New record</h3> {{ freespace }}
-                
+
                 <p>
                 <span id="record-id"></span>
                 </p>
@@ -129,7 +129,7 @@
                     <a id="participant-next-btn-link" class="waves-effect waves-light btn disabled" onclick="demographics_done()">Waiting for faces to be detected</a>
                 </div>
 
-                <div id="visual-tracking" class="center row" style="display:none;">
+                <!-- <div id="visual-tracking" class="center row" style="display:none;">
 
 
                     <p>
@@ -155,12 +155,12 @@
                         </div>
                     </div>
                     </p>
-                </div>
+                </div> -->
 
-                <div id="tutorial" class="center row" style="display:none;">
+                <!-- <div id="tutorial" class="center row" style="display:none;">
                     <a id="tutorial-btn" class="waves-effect waves-light btn" onclick="start_tutorial()">Start tutorial</a>
                     <a class="waves-effect waves-teal btn-flat" onclick="$('#items-placement').show()">Skip</a>
-                </div>
+                </div> -->
 
                 <div id="items-placement" class="center row" style="display:none;">
                     <p>
@@ -171,13 +171,13 @@
                     </p>
                     <a id="items-placement-btn" class="waves-effect waves-light btn" onclick="start_items_placement()">Start Items placement</a>
                     <a id="stop-items-placement-btn" style="display:none" class="orange darken-4 waves-effect waves-light btn" onclick="stop_items_placement()">Stop</a>
-                    <a class="waves-effect waves-teal btn-flat" onclick="showfreeplay()">Skip</a>
+                    <a class="waves-effect waves-teal btn-flat" onclick="show_prod_quiz()">Skip</a>
                     <p id="items-placement-btns" style="display:none">
                     <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="perform('screenshot',{'prefix':'items-placement'})"><i class="fa fa-desktop"></i> screenshot</a>
                     </p>
                 </div>
 
-                <div id="freeplay" class="center row" style="display:none;">
+                <!-- <div id="freeplay" class="center row" style="display:none;">
                     <p>
                     <div id="record_chip" class="center chip">
                         <i class="material-icons" style="vertical-align:middle">voicemail</i>
@@ -197,14 +197,38 @@
 
                     <p id="marker_info"></p>
                     </p>
+                </div> -->
+
+                <div id="prod_quiz" class="center row" style="display:none;">
+                    <p>
+                    <div id="record_chip" class="center chip">
+                        <i class="material-icons" style="vertical-align:middle">voicemail</i>
+                        record
+                    </div>
+                    </p>
+                    <a id="prod_quiz-btn" class="waves-effect waves-light btn" onclick="start_prod_quiz()">Start Production Quiz task</a>
+                    <a id="stop-prod_quiz-btn" style="display:none" class="orange darken-4 waves-effect waves-light btn" onclick="stop_prod_quiz()">Stop</a>
+
+                    <p id="prod_quiz-elapsed-time" style="display:none"></p>
+
+                    <p id="marker-btns" style="display:none">
+                    <a id="answer-btn" class="waves-effect waves-light btn" onclick="add_marker('note')"><i class="material-icons">announcement</i></a>
+                    <a id="correct-btn" class="light-green waves-effect waves-light btn" onclick="add_marker('interesting')"><i class="material-icons">thumb_up</i></a>
+                    <a id="incorrect-btn" class="amber waves-effect waves-light btn" onclick="add_marker('issue')"><i class="material-icons">thumb_down</i></a>
+                    <a id="forward-btn" class="light-green waves-effect waves-light btn" onclick="add_marker('forward')"><i class="material-icons">fast_forward</i></a>
+                    <a id="backward-btn" class="red waves-effect waves-light btn" onclick="add_marker('backward')"><i class="material-icons">fast_rewind</i></a>
+                    <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="add_marker('screenshot')"><i class="fa fa-desktop"></i></a>
+
+                    <p id="marker_info"></p>
+                    </p>
                 </div>
 
                 <div id="finalisation" class="center row" style="display:none">
                     <form id="final-form">
-                        <p class="range-field">
+                        <!-- <p class="range-field">
                         <label for="social-engagement-scale">Level of social engagement (1: none, 5: strong)</label>
                         <input type="range" id="social-engagement-scale" min="1" max="5" value="3" />
-                        </p>
+                        </p> -->
                     </form>
 
                     <a id="finalise-btn" class="orange darken-4 waves-effect waves-light btn" onclick="finalise()"><i class="material-icons">done</i> Finalise record and start new</a>
@@ -291,6 +315,7 @@ function setcondition(cdt) {
 
     $("#participant-next-btn").show();
     startUpdateFaces();
+    //updatedetectedfaces()
 }
 
 function initiate_experiment(cdt) {
@@ -352,7 +377,7 @@ function demographics_done() {
         dataType: "json",
         context: this,
         success: function(done) {
-            $("#visual-tracking").show();
+            $("#items-placement").show();
             }
         });
 }
@@ -414,17 +439,17 @@ function updatedetectedfaces() {
 
                if (condition === "childchild") {
                 if (faces["yellow"] == 1 && faces["purple"] == 1) {
-                        //stopUpdateFaces();
-                        //$("#nb_yellow_faces_chip").hide();
-                        //$("#nb_purple_faces_chip").hide();
+                        stopUpdateFaces();
+                        $("#nb_yellow_faces_chip").hide();
+                        $("#nb_purple_faces_chip").hide();
                         $("#participant-next-btn-link").removeClass('disabled');
                         $("#participant-next-btn-link").html('Save demographics');
                 }
                 }
                else if (condition === "childrobot") {
                 if (faces["purple"] == 1) {
-                        //stopUpdateFaces();
-                        //$("#nb_purple_faces_chip").hide();
+                        stopUpdateFaces();
+                        $("#nb_purple_faces_chip").hide();
                         $("#participant-next-btn-link").removeClass('disabled');
                         $("#participant-next-btn-link").html('Save demographics');
                 }
@@ -436,7 +461,7 @@ function updatedetectedfaces() {
 
 function start_visual_tracking() {
     console.log("Starting visual tracking");
-    
+
     $("#visual-tracking-btn").addClass('disabled');
     $("#visual-tracking-btn").html('Running...');
     $("#visual-tracking-spinner").show();
@@ -455,7 +480,7 @@ function start_visual_tracking() {
 
 function start_tutorial() {
     console.log("Starting tutorial");
-    
+
     $("#tutorial-btn").addClass('disabled');
     $("#tutorial-btn").html('Starting...');
 
@@ -472,7 +497,7 @@ function start_tutorial() {
 
 function start_items_placement() {
     console.log("Starting items placement");
-    
+
     $("#tutorial-btn").html('Tutorial: finished');
     $("#items-placement-btn").addClass('disabled');
     $("#items-placement-btn").html('Starting...');
@@ -494,7 +519,7 @@ function start_items_placement() {
 
 function stop_items_placement() {
     console.log("Stopping items placement");
-    
+
     $("#stop-items-placement-btn").addClass('disabled');
     $("#stop-items-placement-btn").html('Stopping...');
 
@@ -505,7 +530,7 @@ function stop_items_placement() {
         success: function(done) {
             $("#items-placement-btn").html('Items placement: finished');
             $("#stop-items-placement-btn").hide();
-            showfreeplay();
+            show_prod_quiz();
             }
         });
 }
@@ -517,7 +542,7 @@ function showfreeplay() {
 
 function start_freeplay() {
     console.log("Starting freeplay");
-    
+
     $("#items-placement-btns").hide();
     $("#freeplay-btn").addClass('disabled');
 
@@ -552,7 +577,7 @@ function start_freeplay() {
 
 function stop_freeplay() {
     console.log("Stopping freeplay");
-    
+
     $("#stop-freeplay-btn").addClass('disabled');
     $("#stop-freeplay-btn").html('Stopping...');
     $("#marker-btns").hide();
@@ -573,6 +598,70 @@ function stop_freeplay() {
             }
         });
 }
+
+function show_prod_quiz() {
+    $("#prod_quiz").show();
+}
+
+function start_prod_quiz() {
+    console.log("Starting Production Quiz");
+
+    $("#items-placement-btns").hide();
+    $("#prod_quiz-btn").addClass('disabled');
+
+    $("#stop-prod_quiz-btn").removeClass('disabled');
+    $("#prod_quiz-btn").html('Starting...');
+
+    var robot_ip = $("#robot-ip").val();
+
+    $.ajax({
+        url:'{{path}}?action=start_prod_quiz&recordid=' + current_recordid + '&robot-ip=' + robot_ip,
+        dataType: "json",
+        context: this,
+        success: function(done) {
+            $("#prod_quiz-btn").html('Production Quiz: started');
+
+            // reset timer
+            elapsedTime = 0;
+            elapsedTimeTimer = window.setInterval(function(){
+                    elapsedTime++;
+                    var secs = elapsedTime % 60;
+                $   ("#prod_quiz-elapsed-time").html("Elapsed time: " + Math.floor(elapsedTime/60) + ":" + (secs > 9 ? "":"0") + secs);
+                },1000);
+
+            $("#prod_quiz-elapsed-time").show();
+
+            $("#stop-prod_quiz-btn").show();
+            $("#marker-btns").show();
+            $("#marker_info").show();
+            }
+        });
+}
+
+function stop_prod_quiz() {
+    console.log("Stopping Production Quiz");
+
+    $("#stop-prod_quiz-btn").addClass('disabled');
+    $("#stop-prod_quiz-btn").html('Stopping...');
+    $("#marker-btns").hide();
+    $("#marker_info").hide();
+
+    $.ajax({
+        url:'{{path}}?action=stop_prod_quiz',
+        dataType: "json",
+        context: this,
+        success: function(done) {
+            $("#prod_quiz-btn").html('End of the study!');
+            $("#stop-prod_quiz-btn").hide();
+            clearInterval(elapsedTimeTimer);
+            var secs = elapsedTime % 60;
+            $("#prod_quiz-elapsed-time").html("<strong>Total time: " + Math.floor(elapsedTime/60) + ":" + (secs > 9 ? "":"0") + secs + "</strong>");
+
+            $("#finalisation").show();
+            }
+        });
+}
+
 
 function finalise() {
 
@@ -614,14 +703,14 @@ function reset() {
     $("#participant-next-btn-link").addClass('disabled');
     $("#participant-next-btn-link").html('Waiting for faces to be detected');
 
-    $("#visual-tracking-btn").removeClass('disabled');
-    $("#visual-tracking-btn").html('Start visual tracking task');
-    $("#visual-tracking-spinner").hide();
-    $("#visual-tracking").hide();
+    //$("#visual-tracking-btn").removeClass('disabled');
+    //$("#visual-tracking-btn").html('Start visual tracking task');
+    //$("#visual-tracking-spinner").hide();
+    //$("#visual-tracking").hide();
 
-    $("#tutorial-btn").removeClass('disabled');
-    $("#tutorial-btn").html('Start tutorial');
-    $("#tutorial").hide();
+    //$("#tutorial-btn").removeClass('disabled');
+    //$("#tutorial-btn").html('Start tutorial');
+    //$("#tutorial").hide();
 
     $("#items-placement-btn").removeClass('disabled');
     $("#items-placement-btn").html('Start Items placement');
@@ -629,12 +718,19 @@ function reset() {
     $("#stop-items-placement-btn").html('Stop');
 
     $("#robot-conf").hide();
-    $("#freeplay-btn").removeClass('disabled');
-    $("#freeplay-btn").html('Start freeplay');
-    $("#freeplay-elapsed-time").html("");
-    $("#freeplay-elapsed-time").hide();
-    $("#stop-freeplay-btn").html('Stop');
-    $("#freeplay").hide();
+    //$("#freeplay-btn").removeClass('disabled');
+    //$("#freeplay-btn").html('Start freeplay');
+    //$("#freeplay-elapsed-time").html("");
+    //$("#freeplay-elapsed-time").hide();
+    //$("#stop-freeplay-btn").html('Stop');
+    //$("#freeplay").hide();
+
+    $("#prod_quiz-btn").removeClass('disabled');
+    $("#prod_quiz-btn").html('Start freeplay');
+    $("#prod_quiz-elapsed-time").html("");
+    $("#prod_quiz-elapsed-time").hide();
+    $("#stop-prod_quiz-btn").html('Stop');
+    $("#prod_quiz").hide();
 
     $("#final-form")[0].reset();
     $("#finalisation").hide();
@@ -658,4 +754,3 @@ function add_marker(type) {
 }
 
 </script>
-
