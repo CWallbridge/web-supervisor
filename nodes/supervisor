@@ -467,6 +467,15 @@ def process(path, options):
 
                 return 'true'
 
+            elif "next_question" in options["action"]:
+                rospy.loginfo("Going to next question")
+                prod_quiz_num_pub.publish(Empty())
+                return 'true'
+            elif "previous_question" in options["action"]:
+                rospy.loginfo("Going to previous question")
+                prod_quiz_num_pub.publish(Empty())
+                return 'true'
+
             elif "finalise" in options["action"]:
                 rospy.loginfo("Finalising the experiment")
                 expe.save_experiment_details()
