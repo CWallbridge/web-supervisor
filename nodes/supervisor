@@ -40,6 +40,12 @@ sandtraysignalcleardrawing_pub = rospy.Publisher('sandtray/signals/clear_drawing
 sandtraysignalshuffleitems_pub = rospy.Publisher('sandtray/signals/shuffle_items', Empty, queue_size=1)
 sandtraysignalitemstostash_pub = rospy.Publisher('sandtray/signals/items_to_stash', Empty, queue_size=1)
 
+
+#sub_backchannel = rospy.Publisher("nao/backchannel/standard", String, queue_size=1)
+sub_quiz_answer = rospy.Publisher('nao/prod-quiz/answer', String, queue_size=1)
+sub_quiz_feedback = rospy.Publisher('nao/prod-quiz/feedback', String, queue_size=1)
+
+
 from freeplay_sandbox_supervisor.launcher import Launcher
 from freeplay_sandbox_supervisor.experiment import Experiment, CHILDCHILD, CHILDROBOT
 
@@ -50,6 +56,8 @@ rp = RosPack()
 
 launchers = []
 records = {}
+
+nb_question = 1
 
 nb_purple_faces = 1
 nb_yellow_faces = 1
@@ -97,6 +105,17 @@ def getlauncher(name):
             launcher = l
             break
     return launcher
+
+def changequestion(dir):
+    global nb_question
+    if dir == "forward":
+        nb_question = nb_question + 1
+    if dir == "backward":
+        nb_question = nb_question - 1
+
+    question = "quiz" + str(nb_question) + ".svg"
+    return question
+
 
 def process_launch(options):
     launchfile = options["launch"][0]
@@ -423,7 +442,8 @@ def process(path, options):
 
                 if(expe.condition == CHILDROBOT):
                     rospy.loginfo("Starting the robot first")
-                    robot_launcher = getlauncher("play") #different launcher?
+                    #robot_launcher = getlauncher("play")
+                    robot_launcher = getlauncher("nao_behaviours")
                     robotip = options['robot-ip'][0];
                     rospy.loginfo("Setting the robot IP address to %s" % robotip)
                     robot_launcher.setarg("nao_ip", robotip)
@@ -457,7 +477,8 @@ def process(path, options):
 
                 blankscreen_publisher.publish(Empty())
 
-                robot_launcher = getlauncher("play")
+                #robot_launcher = getlauncher("play")
+                robot_launcher = getlauncher("nao_behaviours")
                 robot_launcher.shutdown()
 
                 record_launcher = getlauncher("record")
@@ -467,14 +488,27 @@ def process(path, options):
 
                 return 'true'
 
-            elif "next_question" in options["action"]:
-                rospy.loginfo("Going to next question")
-                prod_quiz_num_pub.publish(Empty())
+            elif "quiz_question" in options["action"]:
+
+
+                rospy.loginfo("Changing the quiz question %s" % options["question"][0])
+                prod_quiz_num_pub.publish(changequestion(options["question"][0]))
+
                 return 'true'
-            elif "previous_question" in options["action"]:
-                rospy.loginfo("Going to previous question")
-                prod_quiz_num_pub.publish(Empty())
+
+            elif "quiz_feedback" in options["action"]:
+
+                if 'feedback' in options:
+                    rospy.loginfo("Give %s feedback in quiz " % options["feedback"][0])
+                    sub_quiz_feedback.publish(options["feedback"][0])
+
                 return 'true'
+
+            elif "quiz_answer" in options["action"]:
+                rospy.loginfo("Give answer to quiz")
+                sub_quiz_answer.publish("")
+                return 'true'
+
 
             elif "finalise" in options["action"]:
                 rospy.loginfo("Finalising the experiment")

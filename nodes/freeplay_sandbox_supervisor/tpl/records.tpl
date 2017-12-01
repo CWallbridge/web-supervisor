@@ -212,11 +212,11 @@
                     <p id="prod_quiz-elapsed-time" style="display:none"></p>
 
                     <p id="marker-btns" style="display:none">
-                    <a id="answer-btn" class="waves-effect waves-light btn" onclick="add_marker('note')"><i class="material-icons">announcement</i></a>
-                    <a id="correct-btn" class="light-green waves-effect waves-light btn" onclick="add_marker('interesting')"><i class="material-icons">thumb_up</i></a>
-                    <a id="incorrect-btn" class="amber waves-effect waves-light btn" onclick="add_marker('issue')"><i class="material-icons">thumb_down</i></a>
-                    <a id="forward-btn" class="light-green waves-effect waves-light btn" onclick="perform('next_question')"><i class="material-icons">fast_forward</i></a>
-                    <a id="backward-btn" class="red waves-effect waves-light btn" onclick="perform('previous_question')"><i class="material-icons">fast_rewind</i></a>
+                    <a id="answer-btn" class="waves-effect waves-light btn" onclick="perform('quiz_answer')"><i class="material-icons">announcement</i></a>
+                    <a id="correct-btn" class="light-green waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'correct'})"><i class="material-icons">thumb_up</i></a>
+                    <a id="incorrect-btn" class="amber waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'incorrect'})"><i class="material-icons">thumb_down</i></a>
+                    <a id="forward-btn" class="light-green waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'forward'})"><i class="material-icons">fast_forward</i></a>
+                    <a id="backward-btn" class="red waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">fast_rewind</i></a>
                     <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="add_marker('screenshot')"><i class="fa fa-desktop"></i></a>
 
                     <p id="marker_info"></p>
