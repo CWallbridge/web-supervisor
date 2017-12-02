@@ -442,8 +442,8 @@ def process(path, options):
 
                 if(expe.condition == CHILDROBOT):
                     rospy.loginfo("Starting the robot first")
-                    #robot_launcher = getlauncher("play")
-                    robot_launcher = getlauncher("nao_behaviours")
+                    robot_launcher = getlauncher("woz")
+                    #robot_launcher = getlauncher("nao_behaviours")
                     robotip = options['robot-ip'][0];
                     rospy.loginfo("Setting the robot IP address to %s" % robotip)
                     robot_launcher.setarg("nao_ip", robotip)
@@ -477,8 +477,8 @@ def process(path, options):
 
                 blankscreen_publisher.publish(Empty())
 
-                #robot_launcher = getlauncher("play")
-                robot_launcher = getlauncher("nao_behaviours")
+                robot_launcher = getlauncher("woz")
+                #robot_launcher = getlauncher("nao_behaviours")
                 robot_launcher.shutdown()
 
                 record_launcher = getlauncher("record")
