@@ -58,6 +58,7 @@ launchers = []
 records = {}
 
 nb_question = 1
+nb_question_max = 3
 
 nb_purple_faces = 1
 nb_yellow_faces = 1
@@ -106,19 +107,22 @@ def getlauncher(name):
             break
     return launcher
 
-def changequestion(dir):
+def changequestion(msg):
     global nb_question
-    if dir == "forward":
-        nb_question = nb_question + 1
-    if dir == "backward":
-        nb_question = nb_question - 1
+    if msg == "clear":
+        nb_question = 0
+    if msg == "start":
+        nb_question = 1
+    if msg == "forward":
+        nb_question = nb_question + 1 if (nb_question + 1) < nb_question_max else nb_question_max
+    if msg == "backward":
+        nb_question = nb_question - 1 if (nb_question - 1) > 0 else 1
+
 
     question = "quiz" + str(nb_question) + ".svg"
     return question
 
-def onquestionchanged(msg):
-    global nb_question
-    nb_question = msg.data
+
 
 
 def process_launch(options):
@@ -443,6 +447,7 @@ def process(path, options):
                 #######################################################
 
                 prod_quiz_publisher.publish(Empty())
+                changequestion("start")
 
                 if(expe.condition == CHILDROBOT):
                     rospy.loginfo("Starting the robot first")
@@ -480,6 +485,7 @@ def process(path, options):
                 rospy.loginfo("Stopping production quiz task")
 
                 blankscreen_publisher.publish(Empty())
+                changequestion("clear")
 
                 robot_launcher = getlauncher("woz")
                 #robot_launcher = getlauncher("nao_behaviours")
@@ -556,8 +562,6 @@ if __name__ == '__main__':
 
     IP="127.0.0.1"
     PORT=8080
-
-    question_subscriber = rospy.Subscriber("/sandtray/nb_question", Char, onquestionchanged)
 
     purpleface_subscriber = rospy.Subscriber("/camera_purple/nb_detected_faces", Char, onpurplefacedetected)
     yellowface_subscriber = rospy.Subscriber("/camera_yellow/nb_detected_faces", Char, onyellowfacedetected)
