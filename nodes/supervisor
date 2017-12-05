@@ -42,8 +42,8 @@ sandtraysignalitemstostash_pub = rospy.Publisher('sandtray/signals/items_to_stas
 
 
 #sub_backchannel = rospy.Publisher("nao/backchannel/standard", String, queue_size=1)
-sub_quiz_answer = rospy.Publisher('nao/prod-quiz/answer', String, queue_size=1)
-sub_quiz_feedback = rospy.Publisher('nao/prod-quiz/feedback', String, queue_size=1)
+sub_quiz_answer = rospy.Publisher('nao/prod_quiz/answer', String, queue_size=1)
+sub_quiz_feedback = rospy.Publisher('nao/prod_quiz/feedback', String, queue_size=1)
 
 
 from freeplay_sandbox_supervisor.launcher import Launcher
@@ -115,6 +115,10 @@ def changequestion(dir):
 
     question = "quiz" + str(nb_question) + ".svg"
     return question
+
+def onquestionchanged(msg):
+    global nb_question
+    nb_question = msg.data
 
 
 def process_launch(options):
@@ -552,6 +556,8 @@ if __name__ == '__main__':
 
     IP="127.0.0.1"
     PORT=8080
+
+    question_subscriber = rospy.Subscriber("/sandtray/nb_question", Char, onquestionchanged)
 
     purpleface_subscriber = rospy.Subscriber("/camera_purple/nb_detected_faces", Char, onpurplefacedetected)
     yellowface_subscriber = rospy.Subscriber("/camera_yellow/nb_detected_faces", Char, onyellowfacedetected)
