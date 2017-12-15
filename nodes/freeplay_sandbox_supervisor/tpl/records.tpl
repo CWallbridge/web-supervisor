@@ -27,8 +27,8 @@
                 </p>
 
                 <div class="center row">
-                <a id="childchildbtn" class="waves-effect waves-light btn" onclick="setcondition('childchild')">Child-child</a>
-                <a id="childrobotbtn" class="waves-effect waves-light btn" onclick="setcondition('childrobot')">Child-robot</a>
+                <a id="childchildbtn" class="waves-effect waves-light btn" onclick="setcondition('childchild')">Child-Adult</a>
+                <a id="childrobotbtn" class="waves-effect waves-light btn" onclick="setcondition('childrobot')">Child-Robot</a>
                 </div>
 
                 <div id="robot-conf" style="display:none">
@@ -60,9 +60,9 @@
                                 <input type="range" id="purple-age" min="3" max="8" />
                                 </p>
 
-                                <h5>Tablet familiarity</h5>
+                                <!-- <h5>Tablet familiarity</h5>
                                 <p>
-                                <input name="purple-tablet-familiarity" type="radio" value="na" id="purple-notknow" checked />
+                                <input name="purple-tablet-familiarity" type="radio" value="na" id=" purple-notknow" checked />
                                 <label for="purple-notknown">Not known</label>
                                 <input name="purple-tablet-familiarity" type="radio" value="0" id="purple-notfamiliar" />
                                 <label for="purple-notfamiliar">Not familiar</label>
@@ -70,6 +70,31 @@
                                 <label for="purple-somewhat-familiar">Somewhat familiar</label>
                                 <input name="purple-tablet-familiarity" type="radio" value="2" id="purple-familiar" />
                                 <label for="purple-familiar">Familiar</label>
+                                </p> -->
+
+                                <h5>Language Proficiency</h5>
+                                <p>
+                                  L1 Language
+                                  <div class="row">
+                                    <div class="col s12">
+                                      <input name="purple-l1-language" class="input-field inline" type="text" value="English" id="purple-l1" />
+                                    </div>
+                                  </div>
+
+                                  <!--<div class="row">-->
+                                  L2 Level
+                                  <p>
+                                    <input name="purple-l2-proficiency" type="radio" value="None" id="purple-noexposure" checked />
+                                    <label for="purple-noexposure">No  Exposure</label>
+                                    <input name="purple-l2-proficiency" type="radio" value="Beginner" id="purple-beginner" />
+                                    <label for="purple-beginner">Beginner</label>
+                                    <input name="purple-l2-proficiency" type="radio" value="Intermediate" id="purple-intermediate" />
+                                    <label for="purple-intermediate">Intermediate</label>
+                                    <input name="purple-l2-proficiency" type="radio" value="Advance" id="purple-advanced" />
+                                    <label for="purple-advanced">Advanced</label>
+                                  </p>
+                                  <!--</div>-->
+
                                 </p>
 
                                 </fieldset>
@@ -99,10 +124,10 @@
 
                                 <p class="range-field">
                                 <label for="yellow-age">Age</label>
-                                <input type="range" id="yellow-age" min="3" max="8" />
+                                <input type="range" id="yellow-age" min="20" max="80" />
                                 </p>
 
-                                <h5>Tablet familiarity</h5>
+                                <!-- <h5>Tablet familiarity</h5>
                                 <p>
                                 <input name="yellow-tablet-familiarity" type="radio" value="na" id="yellow-notknow" checked />
                                 <label for="yellow-notknown">Not known</label>
@@ -112,6 +137,32 @@
                                 <label for="yellow-somewhat-familiar">Somewhat familiar</label>
                                 <input name="yellow-tablet-familiarity" type="radio" value="2" id="yellow-familiar" />
                                 <label for="yellow-familiar">Familiar</label>
+                                </p> -->
+
+                                <h5>Language Proficiency</h5>
+                                <p>
+                                  L1 Language
+                                  <div class="row">
+                                    <div class="col s12">
+                                      <input name="yellow-l1-language" class="input-field inline" type="text" placeholder="English" value="English" id="yellow-l1" />
+                                    </div>
+                                  </div>
+
+                                  <!--<div class="row">-->
+                                  L2 Level
+                                  <p>
+                                    <input name="yellow-l2-proficiency" checked type="radio" value="None" id="yellow-noexposure" />
+                                    <label for="yellow-noexposure">No  Exposure</label>
+                                    <input name="yellow-l2-proficiency" type="radio" value="Beginner" id="yellow-beginner" />
+                                    <label for="yellow-beginner">Beginner</label>
+                                    <input name="yellow-l2-proficiency" type="radio" value="Intermediate" id="yellow-intermediate" />
+                                    <label for="yellow-intermediate">Intermediate</label>
+                                    <input name="yellow-l2-proficiency" type="radio" value="Advance" id="yellow-advanced" />
+                                    <label for="yellow-advanced">Advanced</label>
+                                  </p>
+
+                                  <!--</div>-->
+
                                 </p>
 
                                 </fieldset>
@@ -206,21 +257,74 @@
                         record
                     </div>
                     </p>
-                    <a id="prod_quiz-btn" class="waves-effect waves-light btn" onclick="start_prod_quiz()">Start Production Quiz task</a>
+                    <a id="prod_quiz-btn" class="waves-effect waves-light btn" onclick="start_prod_quiz()">Start Production Quiz</a>
                     <a id="stop-prod_quiz-btn" style="display:none" class="orange darken-4 waves-effect waves-light btn" onclick="stop_prod_quiz()">Stop</a>
 
                     <p id="prod_quiz-elapsed-time" style="display:none"></p>
 
-                    <p id="marker-btns" style="display:none">
-                    <a id="answer-btn" class="waves-effect waves-light btn" onclick="perform('quiz_answer')"><i class="material-icons">announcement</i></a>
-                    <a id="correct-btn" class="light-green waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'correct'})"><i class="material-icons">thumb_up</i></a>
-                    <a id="incorrect-btn" class="amber waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'incorrect'})"><i class="material-icons">thumb_down</i></a>
-                    <a id="forward-btn" class="light-green waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'forward'})"><i class="material-icons">fast_forward</i></a>
-                    <a id="backward-btn" class="red waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">fast_rewind</i></a>
-                    <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="add_marker('screenshot')"><i class="fa fa-desktop"></i></a>
+                    <p id="prod-btns" style="display:none">
+                      <!--<a id="answer-btn" class="green waves-effect waves-light btn" onclick="perform('quiz_answer')"><i class="material-icons">check_circle</i></a>
+                      <a id="correct-btn" class="orange waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'correct'})"><i class="material-icons">report</i></a>
+                      <a id="incorrect-btn" class="blue waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'incorrect'})"><i class="material-icons">question_answer</i></a>-->
 
-                    <p id="marker_info"></p>
+                      <!-- Dropdown Trigger -->
+                      <a id="correct-answer-btn" class='green waves-effect waves-light dropdown-button btn' href='#' data-activates='correct-answer-dropdown'><i class="material-icons">check_circle</i></a>
+
+                      <!-- Dropdown Trigger -->
+                      <a id="incorrect-answer-btn" class='orange waves-effect waves-light dropdown-button btn' href='#' data-activates='incorrect-answer-dropdown'><i class="material-icons">report</i></a>
+
+                      <!-- Dropdown Trigger -->
+                      <a id="encourage-answer-btn" class='blue waves-effect waves-light dropdown-button btn' href='#' data-activates='encourage-answer-dropdown'><i class="material-icons">question_answer</i></a>
+
+
                     </p>
+
+                    <!-- Dropdown Structure -->
+                    <ul id='correct-answer-dropdown' class='dropdown-content'>
+                      <li><a href="#!" onclick="perform('quiz_feedback',{'feedback':'correct'})">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_feedback',{'feedback':'correct'})">two</a></li>
+                    </ul>
+                    <!-- Dropdown Structure -->
+                    <ul id='incorrect-answer-dropdown' class='dropdown-content'>
+                      <li><a href="#!" onclick="perform('quiz_answer')">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_answer')">two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_answer')">three</a></li>
+                    </ul>
+                    <!-- Dropdown Structure -->
+                    <ul id='encourage-answer-dropdown' class='dropdown-content'>
+                      <li><a href="#!" onclick="perform('quiz_answer')">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_answer')">two</a></li>
+                    </ul>
+
+                    <p id="quiz-btns" style="display:none">
+                      <a id="correct-btn" class="light-green waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'correct'})"><i class="material-icons">thumb_up</i></a>
+                      <a id="incorrect-btn" class="amber waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'incorrect'})"><i class="material-icons">thumb_down</i></a>
+                      <a id="forward-btn" class="light-green waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'forward'})"><i class="material-icons">fast_forward</i></a>
+                      <a id="backward-btn" class="red waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">fast_rewind</i></a>
+
+                      <!-- <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="add_marker('screenshot')"><i class="fa fa-desktop"></i></a> -->
+
+                    </p>
+                    <!--<div id="score-info" class="container center row" style="text-align:center;display:none" > -->
+                    <p id="score-info" style="display:none">Quiz Score:<br>
+
+                      <a id="score-child-icon" class="col s2 offset-s3"><i class="purple-text medium material-icons">person_pin</i>
+                        <!--<input type="number" id="score-child" min="0" max="99" step="1" value="0">-->
+                      </a>
+                      <a id="score-child" class="col s1">
+                        <input type="number"  id="score-robot" min="0" max="99" step="1" value="0">
+                      </a>
+                      <!-- <a id="score-child-up-btn" class="col s2" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">arrow_drop_up</i></a>
+                      <a id="score-child-down-btn" class="col s2" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">arrow_drop_down</i></a> -->
+                      <a id="score-robot-icon" class="col s2"><i class="amber-text medium material-icons">person_pin</i>
+                      </a>
+                      <a id="score-robot" class="col s1">
+                        <input type="number"  id="score-robot" min="0" max="99" step="1" value="0">
+                      </a>
+                      <!-- <a id="score-robot-up-btn" class="col s2" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">arrow_drop_up</i></a>
+                      <a id="score-robot-down-btn" class="col s2" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">arrow_drop_down</i></a> -->
+                    </p>
+                    <!--</div>-->
                 </div>
 
                 <div id="finalisation" class="center row" style="display:none">
@@ -365,10 +469,14 @@ function demographics_done() {
         "condition": condition,
         "purple-gender": $('input[name=purple-gender]:checked').val(),
         "purple-age": $("#purple-age").val(),
-        "purple-tablet-familiarity": $('input[name=purple-tablet-familiarity]:checked').val(),
+        // "purple-tablet-familiarity": $('input[name=purple-tablet-familiarity]:checked').val(),
+        "purple-l1-language": $("#purple-l1").val(),
+        "purple-l2-proficiency": $('input[name=purple-l2-proficiency]:checked').val(),
         "yellow-gender": $('input[name=yellow-gender]:checked').val(),
         "yellow-age": $("#yellow-age").val(),
-        "yellow-tablet-familiarity": $('input[name=yellow-tablet-familiarity]:checked').val(),
+        //"yellow-tablet-familiarity": $('input[name=yellow-tablet-familiarity]:checked').val(),
+        "yellow-l1-language": $("#yellow-l1").val(),
+        "yellow-l2-proficiency": $('input[name=yellow-l2-proficiency]:checked').val(),
         }
 
 
@@ -632,8 +740,9 @@ function start_prod_quiz() {
             $("#prod_quiz-elapsed-time").show();
 
             $("#stop-prod_quiz-btn").show();
-            $("#marker-btns").show();
-            $("#marker_info").show();
+            $("#prod-btns").show();
+            $("#quiz-btns").show();
+            $("#score-info").show();
             }
         });
 }
@@ -643,8 +752,9 @@ function stop_prod_quiz() {
 
     $("#stop-prod_quiz-btn").addClass('disabled');
     $("#stop-prod_quiz-btn").html('Stopping...');
-    $("#marker-btns").hide();
-    $("#marker_info").hide();
+    $("#prod-btns").hide();
+    $("#quiz-btns").hide();
+    $("#score-info").hide();
 
     $.ajax({
         url:'{{path}}?action=stop_prod_quiz',
@@ -666,7 +776,7 @@ function stop_prod_quiz() {
 function finalise() {
 
     $("#finalise-btn").html('Stopping everything...');
-    addextra("social-engagement", $("#social-engagement-scale").val())
+    //addextra("social-engagement", $("#social-engagement-scale").val())
 
     $.ajax({
         url:'{{path}}?action=finalise&recordid=' + current_recordid,
@@ -726,7 +836,7 @@ function reset() {
     //$("#freeplay").hide();
 
     $("#prod_quiz-btn").removeClass('disabled');
-    $("#prod_quiz-btn").html('Start freeplay');
+    $("#prod_quiz-btn").html('Start Production Quiz');
     $("#prod_quiz-elapsed-time").html("");
     $("#prod_quiz-elapsed-time").hide();
     $("#stop-prod_quiz-btn").html('Stop');

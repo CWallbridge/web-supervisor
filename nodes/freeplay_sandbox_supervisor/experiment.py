@@ -87,12 +87,15 @@ class Experiment:
 
         self.purple.setdetails(demographics["purple-age"][0],
                                demographics["purple-gender"][0],
-                               {"tablet-familiarity": demographics["purple-tablet-familiarity"][0]})
+                               {"l1-language": demographics["purple-l1-language"][0],
+                               "l2-language-proficiency": demographics["purple-l2-proficiency"][0]})
 
         if self.condition == CHILDCHILD:
             self.yellow.setdetails(demographics["yellow-age"][0],
                                    demographics["yellow-gender"][0],
-                                   {"tablet-familiarity": demographics["yellow-tablet-familiarity"][0]})
+                                   #{"tablet-familiarity": demographics["yellow-tablet-familiarity"][0]}
+                                   {"l1-language": demographics["yellow-l1-language"][0],
+                                   "l2-language-proficiency": demographics["yellow-l2-proficiency"][0]})
 
         self.save_experiment_details()
 
@@ -138,4 +141,3 @@ class Experiment:
 
         self.extras[key] = value
         self.save_experiment_details()
-
