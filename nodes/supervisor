@@ -115,14 +115,14 @@ def changequestion(msg):
     if msg == "start":
         nb_question = 1
     if msg == "forward":
-		if (nb_question + 1) < nb_question_max
+		if (nb_question + 1) < nb_question_max:
 			nb_question = nb_question + 1 
-		else 
+		else:
 			nb_question = nb_question_max
     if msg == "backward":
-        if (nb_question - 1) > 0 
+        if (nb_question - 1) > 0:
 			nb_question = nb_question - 1
-        else 
+        else:
 			nb_question = 1
 
 
