@@ -41,9 +41,10 @@ sandtraysignalshuffleitems_pub = rospy.Publisher('sandtray/signals/shuffle_items
 sandtraysignalitemstostash_pub = rospy.Publisher('sandtray/signals/items_to_stash', Empty, queue_size=1)
 
 
-#sub_backchannel = rospy.Publisher("nao/backchannel/standard", String, queue_size=1)
-sub_quiz_answer = rospy.Publisher('nao/prod_quiz/answer', String, queue_size=1)
-sub_quiz_feedback = rospy.Publisher('nao/prod_quiz/feedback', String, queue_size=1)
+#pub_backchannel = rospy.Publisher("nao/backchannel/standard", String, queue_size=1)
+pub_quiz_answer = rospy.Publisher('nao/prod_quiz/answer', String, queue_size=1)
+pub_quiz_feedback = rospy.Publisher('nao/prod_quiz/feedback', String, queue_size=1)
+pub_quiz_encourage = rospy.Publisher('nao/prod_quiz/encourage', Empty, queue_size=1)
 
 
 from freeplay_sandbox_supervisor.launcher import Launcher
@@ -114,9 +115,15 @@ def changequestion(msg):
     if msg == "start":
         nb_question = 1
     if msg == "forward":
-        nb_question = nb_question + 1 if (nb_question + 1) < nb_question_max else nb_question_max
+		if (nb_question + 1) < nb_question_max
+			nb_question = nb_question + 1 
+		else 
+			nb_question = nb_question_max
     if msg == "backward":
-        nb_question = nb_question - 1 if (nb_question - 1) > 0 else 1
+        if (nb_question - 1) > 0 
+			nb_question = nb_question - 1
+        else 
+			nb_question = 1
 
 
     question = "quiz" + str(nb_question) + ".svg"
@@ -500,7 +507,6 @@ def process(path, options):
 
             elif "quiz_question" in options["action"]:
 
-
                 rospy.loginfo("Changing the quiz question %s" % options["question"][0])
                 prod_quiz_num_pub.publish(changequestion(options["question"][0]))
 
@@ -510,14 +516,23 @@ def process(path, options):
 
                 if 'feedback' in options:
                     rospy.loginfo("Give %s feedback in quiz " % options["feedback"][0])
-                    sub_quiz_feedback.publish(options["feedback"][0])
+                    pub_quiz_feedback.publish(options["feedback"][0])
 
                 return 'true'
 
             elif "quiz_answer" in options["action"]:
-                rospy.loginfo("Give answer to quiz")
-                sub_quiz_answer.publish("")
+				
+				if 'answer' in options:
+					rospy.loginfo("Give answer to quiz")
+					pub_quiz_answer.publish(options["answer"][0]+','+str(nb_question))
+					
                 return 'true'
+
+			elif "quiz_encourage" in options["action"]:
+				
+				rospy.loginfo("Give encouragement")
+				pub_quiz_encourage.publish(Empty())
+				return 'true'
 
 
             elif "finalise" in options["action"]:

@@ -268,33 +268,16 @@
                       <a id="incorrect-btn" class="blue waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'incorrect'})"><i class="material-icons">question_answer</i></a>-->
 
                       <!-- Dropdown Trigger -->
-                      <a id="correct-answer-btn" class='green waves-effect waves-light dropdown-button btn' href='#' data-activates='correct-answer-dropdown'><i class="material-icons">check_circle</i></a>
+                      <a id="correct-answer-btn" class="green waves-effect waves-light dropdown-button btn" onclick="perform('quiz_answer',{'answer':'correct'})"><i class="material-icons">check_circle</i></a>
 
                       <!-- Dropdown Trigger -->
-                      <a id="incorrect-answer-btn" class='orange waves-effect waves-light dropdown-button btn' href='#' data-activates='incorrect-answer-dropdown'><i class="material-icons">report</i></a>
+                      <a id="incorrect-answer-btn" class="orange waves-effect waves-light dropdown-button btn" onclick="perform('quiz_answer',{'answer':'incorrect'})"><i class="material-icons">report</i></a>
 
                       <!-- Dropdown Trigger -->
-                      <a id="encourage-answer-btn" class='blue waves-effect waves-light dropdown-button btn' href='#' data-activates='encourage-answer-dropdown'><i class="material-icons">question_answer</i></a>
+                      <a id="encourage-answer-btn" class="blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage')"><i class="material-icons">question_answer</i></a>
 
 
                     </p>
-
-                    <!-- Dropdown Structure -->
-                    <ul id='correct-answer-dropdown' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_feedback',{'feedback':'correct'})">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_feedback',{'feedback':'correct'})">two</a></li>
-                    </ul>
-                    <!-- Dropdown Structure -->
-                    <ul id='incorrect-answer-dropdown' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_answer')">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_answer')">two</a></li>
-                      <li><a href="#!" onclick="perform('quiz_answer')">three</a></li>
-                    </ul>
-                    <!-- Dropdown Structure -->
-                    <ul id='encourage-answer-dropdown' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_answer')">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_answer')">two</a></li>
-                    </ul>
 
                     <p id="quiz-btns" style="display:none">
                       <a id="correct-btn" class="light-green waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'correct'})"><i class="material-icons">thumb_up</i></a>
@@ -303,7 +286,7 @@
                       <a id="backward-btn" class="red waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">fast_rewind</i></a>
 
                       <!-- <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="add_marker('screenshot')"><i class="fa fa-desktop"></i></a> -->
-
+                      
                     </p>
                     <!--<div id="score-info" class="container center row" style="text-align:center;display:none" > -->
                     <p id="score-info" style="display:none">Quiz Score:<br>
