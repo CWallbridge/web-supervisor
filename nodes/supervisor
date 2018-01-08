@@ -115,15 +115,15 @@ def changequestion(msg):
     if msg == "start":
         nb_question = 1
     if msg == "forward":
-		if (nb_question + 1) < nb_question_max:
-			nb_question = nb_question + 1 
-		else:
-			nb_question = nb_question_max
+        if (nb_question + 1) < nb_question_max:
+            nb_question = nb_question + 1 
+        else:
+            nb_question = nb_question_max
     if msg == "backward":
         if (nb_question - 1) > 0:
-			nb_question = nb_question - 1
+            nb_question = nb_question - 1
         else:
-			nb_question = 1
+            nb_question = 1
 
 
     question = "quiz" + str(nb_question) + ".svg"
@@ -521,18 +521,18 @@ def process(path, options):
                 return 'true'
 
             elif "quiz_answer" in options["action"]:
-				
-				if 'answer' in options:
-					rospy.loginfo("Give answer to quiz")
-					pub_quiz_answer.publish(options["answer"][0]+','+str(nb_question))
-					
+
+                if 'answer' in options:
+                    rospy.loginfo("Give answer to quiz")
+                    pub_quiz_answer.publish(options["answer"][0]+','+str(nb_question))
+
                 return 'true'
 
-			elif "quiz_encourage" in options["action"]:
-				
-				rospy.loginfo("Give encouragement")
-				pub_quiz_encourage.publish(Empty())
-				return 'true'
+            elif "quiz_encourage" in options["action"]:
+                
+                rospy.loginfo("Give encouragement")
+                pub_quiz_encourage.publish(Empty())
+                return 'true'
 
 
             elif "finalise" in options["action"]:
