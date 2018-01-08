@@ -523,7 +523,7 @@ def process(path, options):
             elif "quiz_answer" in options["action"]:
 
                 if 'answer' in options:
-                    rospy.loginfo("Give answer to quiz")
+                    rospy.loginfo("Give %s answer to quiz" % options["answer"][0])
                     pub_quiz_answer.publish(options["answer"][0]+','+str(nb_question))
 
                 return 'true'
