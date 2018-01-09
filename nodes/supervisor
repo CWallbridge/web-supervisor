@@ -45,6 +45,8 @@ sandtraysignalitemstostash_pub = rospy.Publisher('sandtray/signals/items_to_stas
 pub_quiz_answer = rospy.Publisher('nao/prod_quiz/answer', String, queue_size=1)
 pub_quiz_feedback = rospy.Publisher('nao/prod_quiz/feedback', String, queue_size=1)
 pub_quiz_encourage = rospy.Publisher('nao/prod_quiz/encourage', Empty, queue_size=1)
+pub_quiz_uscore = rospy.Publisher('sandtray/quiz/userScore', String, queue_size=1)
+pub_quiz_ascore = rospy.Publisher('sandtray/quiz/agentScore', String, queue_size=1)
 
 
 from freeplay_sandbox_supervisor.launcher import Launcher
@@ -534,6 +536,13 @@ def process(path, options):
                 pub_quiz_encourage.publish(Empty())
                 return 'true'
 
+            elif "quiz_uscore" in options["action"]:
+                rospy.loginfo("Updating user score to %s" % options["uscore"][0])
+                pub_quiz_uscore.publish(options["uscore"][0])
+                
+            elif "quiz_ascore" in options["action"]:
+                rospy.loginfo("Updating agent score to %s" % options["ascore"][0])
+                pub_quiz_ascore.publish(options["ascore"][0])
 
             elif "finalise" in options["action"]:
                 rospy.loginfo("Finalising the experiment")
