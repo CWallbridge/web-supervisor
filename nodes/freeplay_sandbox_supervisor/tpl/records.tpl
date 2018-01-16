@@ -286,7 +286,7 @@
                       <a id="backward-btn" class="red waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">fast_rewind</i></a>
 
                       <!-- <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="add_marker('screenshot')"><i class="fa fa-desktop"></i></a> -->
-                      
+
                     </p>
                     <!--<div id="score-info" class="container center row" style="text-align:center;display:none" > -->
                     <p id="score-info" style="display:none">Quiz Score:<br>
@@ -828,6 +828,13 @@ function reset() {
     $("#final-form")[0].reset();
     $("#finalisation").hide();
     $("#finalise-btn").html('<i class="material-icons">done</i> Finalise record and start new');
+
+    $('#score-child').value = 0;
+    $('#score-robot').value = 0;
+
+    perform('quiz_uscore', {'uscore':0})
+    perform('quiz_ascore', {'uscore':0})
+
 }
 
 function add_marker(type) {
