@@ -61,7 +61,7 @@ launchers = []
 records = {}
 
 nb_question = 1
-nb_question_max = 3
+nb_question_max = 10
 
 nb_purple_faces = 1
 nb_yellow_faces = 1
