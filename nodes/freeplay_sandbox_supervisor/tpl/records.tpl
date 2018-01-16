@@ -833,7 +833,7 @@ function reset() {
     $('#score-robot').value = 0;
 
     perform('quiz_uscore', {'uscore':0})
-    perform('quiz_ascore', {'uscore':0})
+    perform('quiz_ascore', {'ascore':0})
 
 }
 
