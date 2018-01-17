@@ -95,7 +95,8 @@ class Experiment:
                                    demographics["yellow-gender"][0],
                                    #{"tablet-familiarity": demographics["yellow-tablet-familiarity"][0]}
                                    #{"l1-language": demographics["yellow-l1-language"][0],
-                                   #"l2-language-proficiency": demographics["yellow-l2-proficiency"][0]})
+                                   #"l2-language-proficiency": demographics["yellow-l2-proficiency"][0]}
+                                   {})
 
         self.save_experiment_details()
 
