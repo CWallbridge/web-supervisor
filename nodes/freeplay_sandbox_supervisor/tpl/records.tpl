@@ -139,7 +139,7 @@
                                 <label for="yellow-familiar">Familiar</label>
                                 </p> -->
 
-                                <h5>Language Proficiency</h5>
+                                <!-- <h5>Language Proficiency</h5>
                                 <p>
                                   L1 Language
                                   <div class="row">
@@ -148,7 +148,7 @@
                                     </div>
                                   </div>
 
-                                  <!--<div class="row">-->
+
                                   L2 Level
                                   <p>
                                     <input name="yellow-l2-proficiency" checked type="radio" value="None" id="yellow-noexposure" />
@@ -161,9 +161,9 @@
                                     <label for="yellow-advanced">Advanced</label>
                                   </p>
 
-                                  <!--</div>-->
 
-                                </p>
+
+                                </p> -->
 
                                 </fieldset>
 
@@ -390,6 +390,7 @@ function setcondition(cdt) {
     condition = cdt;
 
     if (cdt === "childchild") {
+        $("#robot-conf").show();
         $("#childrobotbtn").addClass("disabled");
         $("#purple-participant").show();
         $("#yellow-participant").show();
@@ -760,6 +761,8 @@ function finalise() {
 
     $("#finalise-btn").html('Stopping everything...');
     //addextra("social-engagement", $("#social-engagement-scale").val())
+    addextra("score-child", $("#score-child-input").val())
+    addextra("score-robot", $("#score-robot-input").val())
 
     $.ajax({
         url:'{{path}}?action=finalise&recordid=' + current_recordid,

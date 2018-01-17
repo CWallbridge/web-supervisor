@@ -118,7 +118,7 @@ def changequestion(msg):
         nb_question = 1
     if msg == "forward":
         if (nb_question + 1) < nb_question_max:
-            nb_question = nb_question + 1 
+            nb_question = nb_question + 1
         else:
             nb_question = nb_question_max
     if msg == "backward":
@@ -327,24 +327,24 @@ def process(path, options):
                 launcher = getlauncher("dual_sr300")
                 launcher.shutdown()
 
-                if(expe.condition == CHILDROBOT):
-                    rospy.loginfo("Starting the robot first in Wizard-of-Oz mode")
-                    robot_launcher = getlauncher("woz")
-                    robotip = options['robot-ip'][0];
-                    rospy.loginfo("Setting the robot IP address to %s" % robotip)
-                    robot_launcher.setarg("nao_ip", robotip)
-                    robot_launcher.setarg("with_robot", True)
-                    robot_launcher.setarg("arm_reach", 0.5)
+                #if(expe.condition == CHILDROBOT):
+                rospy.loginfo("Starting the robot first in Wizard-of-Oz mode")
+                robot_launcher = getlauncher("woz")
+                robotip = options['robot-ip'][0];
+                rospy.loginfo("Setting the robot IP address to %s" % robotip)
+                robot_launcher.setarg("nao_ip", robotip)
+                robot_launcher.setarg("with_robot", True)
+                robot_launcher.setarg("arm_reach", 0.5)
 
-                    ##### WORKAROUND FOR NAOQI MESSING UP WITH THE ENVIRONMENT
-                    # in general, we does not want the naoqi SDK to appear in the
-                    # LD_LIBRARY_PATH as it contains old libraries. But when launching
-                    # the robot, this needs to be added
-                    env = dict(os.environ)
-                    env['LD_LIBRARY_PATH'] = env['LD_LIBRARY_PATH'] + ":" + env['HOME'] + "/nao/naoqi-sdk-2.1.4.13-linux64/lib"
-                    ######
+                ##### WORKAROUND FOR NAOQI MESSING UP WITH THE ENVIRONMENT
+                # in general, we does not want the naoqi SDK to appear in the
+                # LD_LIBRARY_PATH as it contains old libraries. But when launching
+                # the robot, this needs to be added
+                env = dict(os.environ)
+                env['LD_LIBRARY_PATH'] = env['LD_LIBRARY_PATH'] + ":" + env['HOME'] + "/nao/naoqi-sdk-2.1.4.13-linux64/lib"
+                ######
 
-                    robot_launcher.start(env=env)
+                robot_launcher.start(env=env)
 
                 prepare_launcher = getlauncher("prepare_recording")
                 prepare_launcher.start()
@@ -531,7 +531,7 @@ def process(path, options):
                 return 'true'
 
             elif "quiz_encourage" in options["action"]:
-                
+
                 rospy.loginfo("Give encouragement")
                 pub_quiz_encourage.publish(Empty())
                 return 'true'
@@ -539,7 +539,7 @@ def process(path, options):
             elif "quiz_uscore" in options["action"]:
                 rospy.loginfo("Updating user score to %s" % options["uscore"][0])
                 pub_quiz_uscore.publish(options["uscore"][0])
-                
+
             elif "quiz_ascore" in options["action"]:
                 rospy.loginfo("Updating agent score to %s" % options["ascore"][0])
                 pub_quiz_ascore.publish(options["ascore"][0])
