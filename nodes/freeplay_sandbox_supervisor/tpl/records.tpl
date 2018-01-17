@@ -295,14 +295,14 @@
                         <!--<input type="number" id="score-child" min="0" max="99" step="1" value="0">-->
                       </a>
                       <a id="score-child" class="col s1">
-                        <input type="number"  id="score-child" min="0" max="99" step="1" value="0" onchange="perform('quiz_uscore', {'uscore':this.value})">
+                        <input type="number"  id="score-child-input" min="0" max="99" step="1" value="0" onchange="perform('quiz_uscore', {'uscore':this.value})">
                       </a>
                       <!-- <a id="score-child-up-btn" class="col s2" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">arrow_drop_up</i></a>
                       <a id="score-child-down-btn" class="col s2" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">arrow_drop_down</i></a> -->
                       <a id="score-robot-icon" class="col s2"><i class="amber-text medium material-icons">person_pin</i>
                       </a>
                       <a id="score-robot" class="col s1">
-                        <input type="number"  id="score-robot" min="0" max="99" step="1" value="0" onchange="perform('quiz_ascore', {'ascore':this.value})">
+                        <input type="number"  id="score-robot-input" min="0" max="99" step="1" value="0" onchange="perform('quiz_ascore', {'ascore':this.value})">
                       </a>
                       <!-- <a id="score-robot-up-btn" class="col s2" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">arrow_drop_up</i></a>
                       <a id="score-robot-down-btn" class="col s2" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">arrow_drop_down</i></a> -->
@@ -829,8 +829,8 @@ function reset() {
     $("#finalisation").hide();
     $("#finalise-btn").html('<i class="material-icons">done</i> Finalise record and start new');
 
-    $('#score-child').value = 0;
-    $('#score-robot').value = 0;
+    $('#score-child-input').val(0);
+    $('#score-robot-input').val(0);
 
     perform('quiz_uscore', {'uscore':0})
     perform('quiz_ascore', {'ascore':0})
