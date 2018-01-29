@@ -48,6 +48,7 @@ pub_quiz_encourage = rospy.Publisher('nao/prod_quiz/encourage', Empty, queue_siz
 pub_quiz_uscore = rospy.Publisher('sandtray/quiz/userScore', String, queue_size=1)
 pub_quiz_ascore = rospy.Publisher('sandtray/quiz/agentScore', String, queue_size=1)
 
+pub_quiz_childname = rospy.Publisher('nao/prod_quiz/childname', String, queue_size=1)
 
 from freeplay_sandbox_supervisor.launcher import Launcher
 from freeplay_sandbox_supervisor.experiment import Experiment, CHILDCHILD, CHILDROBOT
@@ -360,6 +361,9 @@ def process(path, options):
             elif "stop_items_placement" in options["action"]:
                 rospy.loginfo("Stopping items placement")
 
+                robot_launcher = getlauncher("woz")
+                robot_launcher.shutdown()
+
                 record_launcher = getlauncher("record_items_placement")
                 record_launcher.shutdown()
 
@@ -543,6 +547,10 @@ def process(path, options):
             elif "quiz_ascore" in options["action"]:
                 rospy.loginfo("Updating agent score to %s" % options["ascore"][0])
                 pub_quiz_ascore.publish(options["ascore"][0])
+
+            elif "child_name" in options["action"]:
+                rospy.loginfo("Updating child name to %s" % options["name"][0])
+                pub_quiz_childname.publish(options["name"][0])
 
             elif "finalise" in options["action"]:
                 rospy.loginfo("Finalising the experiment")

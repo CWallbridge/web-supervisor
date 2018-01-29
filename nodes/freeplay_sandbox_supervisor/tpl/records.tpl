@@ -27,7 +27,7 @@
                 </p>
 
                 <div class="center row">
-                <a id="childchildbtn" class="waves-effect waves-light btn" onclick="setcondition('childchild')">Child-Adult</a>
+                <a id="childchildbtn" class="waves-effect waves-light btn" onclick="setcondition('childadult')">Child-Adult</a>
                 <a id="childrobotbtn" class="waves-effect waves-light btn" onclick="setcondition('childrobot')">Child-Robot</a>
                 </div>
 
@@ -48,6 +48,13 @@
                                 <strong>ID: <span id="purple-id"></span></strong>
 
                                 <h5>General</h5>
+                                <p>
+                                  <div class="col s12">
+                                    <label for="purple-name">Name</label>
+                                    <input name="purple-child-name" class="input-field inline" type="text"  id="purple-name" onchange="perform('child_name', {'name':this.value})" />
+                                  </div>
+                                </p>
+
                                 <p>
                                 <input name="purple-gender" checked type="radio" value="male" id="purple-male" />
                                 <label for="purple-male">Male</label>
@@ -124,7 +131,7 @@
 
                                 <p class="range-field">
                                 <label for="yellow-age">Age</label>
-                                <input type="range" id="yellow-age" min="20" max="80" />
+                                <input type="range" id="yellow-age" min="20" max="80" value="30" />
                                 </p>
 
                                 <!-- <h5>Tablet familiarity</h5>
@@ -160,8 +167,6 @@
                                     <input name="yellow-l2-proficiency" type="radio" value="Advance" id="yellow-advanced" />
                                     <label for="yellow-advanced">Advanced</label>
                                   </p>
-
-
 
                                 </p> -->
 
@@ -262,32 +267,47 @@
 
                     <p id="prod_quiz-elapsed-time" style="display:none"></p>
 
-                    <p id="prod-btns" style="display:none">
-                      <!--<a id="answer-btn" class="green waves-effect waves-light btn" onclick="perform('quiz_answer')"><i class="material-icons">check_circle</i></a>
-                      <a id="correct-btn" class="orange waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'correct'})"><i class="material-icons">report</i></a>
-                      <a id="incorrect-btn" class="blue waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'incorrect'})"><i class="material-icons">question_answer</i></a>-->
+                    <p id="quiz-btns" style="display:none">
 
-                      <!-- Dropdown Trigger -->
-                      <a id="correct-answer-btn" class="green waves-effect waves-light dropdown-button btn" onclick="perform('quiz_answer',{'answer':'correct'})"><i class="material-icons">check_circle</i></a>
-
-                      <!-- Dropdown Trigger -->
-                      <a id="incorrect-answer-btn" class="orange waves-effect waves-light dropdown-button btn" onclick="perform('quiz_answer',{'answer':'incorrect'})"><i class="material-icons">report</i></a>
-
-                      <!-- Dropdown Trigger -->
-                      <a id="encourage-answer-btn" class="blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage')"><i class="material-icons">question_answer</i></a>
-
+                      <!-- Robot Answer -->
+                      <a id="correct-answer-btn" class="light-green waves-effect waves-light btn" onclick="answer_quiz('robot', 'correct')"><i class="material-icons">check_circle</i></a>
+                      <a id="incorrect-answer-btn" class="orange darken-2 waves-effect waves-light btn" onclick="answer_quiz('robot', 'incorrect')"><i class="material-icons">report</i></a>
+                      <!-- Child Answer -->
+                      <a id="correct-btn" class="green waves-effect waves-light btn" onclick="answer_quiz('user', 'correct')"><i class="material-icons">thumb_up</i></a>
+                      <a id="incorrect-btn" class="orange darken-4 waves-effect waves-light btn" onclick="answer_quiz('user', 'incorrect')"><i class="material-icons">thumb_down</i></a>
+                      <!-- Question Controls -->
+                      <a id="forward-btn" class="green waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'forward'})"><i class="material-icons">fast_forward</i></a>
+                      <a id="backward-btn" class="orange darken-4 waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">fast_rewind</i></a>
 
                     </p>
 
-                    <p id="quiz-btns" style="display:none">
-                      <a id="correct-btn" class="light-green waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'correct'})"><i class="material-icons">thumb_up</i></a>
-                      <a id="incorrect-btn" class="amber waves-effect waves-light btn" onclick="perform('quiz_feedback',{'feedback':'incorrect'})"><i class="material-icons">thumb_down</i></a>
-                      <a id="forward-btn" class="light-green waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'forward'})"><i class="material-icons">fast_forward</i></a>
-                      <a id="backward-btn" class="red waves-effect waves-light btn" onclick="perform('quiz_question',{'question':'backward'})"><i class="material-icons">fast_rewind</i></a>
+                    <p id="prod-btns" style="display:none">
 
                       <!-- <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="add_marker('screenshot')"><i class="fa fa-desktop"></i></a> -->
+                      <!-- Dropdown Trigger -->
+                      <a id="encourage-level1-btn" class="light-blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage')"><i class="material-icons">filter_1</i></a>
+                      <a id="encourage-level2-btn" class="light-blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage', {'smth':'something'})"><i class="material-icons">filter_2</i></a>
+                      <a id="encourage-level3-btn" data-activates='encourage-level3' class="light-blue waves-effect waves-light dropdown-button btn"><i class="material-icons">filter_3</i></a>
+                      <!-- Where is the teddybear? -->
+                      <a id="question-help-btn" class="red lighten-1 waves-effect waves-light dropdown-button btn" onclick="perform('quiz_question_help')"><i class="material-icons">help</i></a>
+                      <!-- Prompt child to use L2 language -->
+                      <a id="language-prompt-btn" class="teal lighten-1 waves-effect waves-light dropdown-button btn" onclick="perform('quiz_prompt_language')"><i class="material-icons">language</i></a>
+                      <!-- Switch player's turn -->
+                      <a id="switch-turn-btn" class="amber waves-effect waves-light btn" onclick="perform('quiz_switch_turn')"><i class="material-icons">autorenew</i></a>
 
                     </p>
+
+                    <!-- Dropdown for encourage level 3 -->
+                    <ul id='encourage-level3' class='dropdown-content'>
+                      <li><a href="#!" onclick="perform('drop_one_down')">one</a></li>
+                      <li><a href="#!" onclick="perform('drop_down_two')">two</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#!" onclick="perform('drop_down_3')">three</a></li>
+                      <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                      <li><a href="#!"><i class="material-icons" onclick="perform('cloud')">cloud</i>five</a></li>
+                    </ul>
+
+
                     <!--<div id="score-info" class="container center row" style="text-align:center;display:none" > -->
                     <p id="score-info" style="display:none">Quiz Score:<br>
 
@@ -389,7 +409,7 @@ function setcondition(cdt) {
 
     condition = cdt;
 
-    if (cdt === "childchild") {
+    if (cdt === "childadult") {
         $("#robot-conf").show();
         $("#childrobotbtn").addClass("disabled");
         $("#purple-participant").show();
@@ -529,7 +549,7 @@ function updatedetectedfaces() {
                $("#nb_yellow_faces_chip").toggleClass('red-text',faces["yellow"] != 1);
 
 
-               if (condition === "childchild") {
+               if (condition === "childadult") {
                 if (faces["yellow"] == 1 && faces["purple"] == 1) {
                         stopUpdateFaces();
                         $("#nb_yellow_faces_chip").hide();
@@ -754,6 +774,42 @@ function stop_prod_quiz() {
             $("#finalisation").show();
             }
         });
+}
+
+function answer_quiz(player, answer) {
+
+  if (player === "user") {
+    if (answer === "correct"){
+      change_score(player)
+    }
+    if (condition === "childrobot") {
+      perform('quiz_feedback',{'feedback':answer})
+    }
+  }
+  if (player === "robot") {
+    perform('quiz_answer',{'answer':answer})
+    if (answer === "correct"){
+      change_score(player)
+    }
+  }
+}
+
+function change_score(player) {
+
+  if (player == "user") {
+    score = parseInt($('#score-child-input').val(), 10);
+    score = score + 1;
+    perform('quiz_uscore', {'uscore':score});
+    $('#score-child-input').val(score);
+  }
+  if (player == "robot") {
+    score = parseInt($('#score-robot-input').val(), 10);
+    score = score + 1;
+    perform('quiz_ascore', {'ascore':score});
+    $('#score-robot-input').val(score);
+  }
+
+
 }
 
 

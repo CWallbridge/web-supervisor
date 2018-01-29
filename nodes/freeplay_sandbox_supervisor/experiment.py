@@ -10,7 +10,7 @@ import os.path
 
 import rospy
 
-CHILDCHILD="childchild"
+CHILDCHILD="childadult"
 CHILDROBOT="childrobot"
 
 BASE_PATH = os.path.join(os.path.expanduser("~"),"freeplay_sandox","data")
