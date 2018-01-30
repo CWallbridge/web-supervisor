@@ -285,26 +285,44 @@
 
                       <!-- <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="add_marker('screenshot')"><i class="fa fa-desktop"></i></a> -->
                       <!-- Dropdown Trigger -->
-                      <a id="encourage-level1-btn" class="light-blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage')"><i class="material-icons">filter_1</i></a>
-                      <a id="encourage-level2-btn" class="light-blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage', {'smth':'something'})"><i class="material-icons">filter_2</i></a>
+                      <a id="encourage-level1-btn" class="light-blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage', {'encourage':'1, 0'})"><i class="material-icons">filter_1</i></a>
+                      <a id="encourage-level2-btn" data-activates='encourage-level2' class="light-blue waves-effect waves-light dropdown-button btn"><i class="material-icons">filter_2</i></a>
                       <a id="encourage-level3-btn" data-activates='encourage-level3' class="light-blue waves-effect waves-light dropdown-button btn"><i class="material-icons">filter_3</i></a>
                       <!-- Where is the teddybear? -->
-                      <a id="question-help-btn" class="red lighten-1 waves-effect waves-light dropdown-button btn" onclick="perform('quiz_question_help')"><i class="material-icons">help</i></a>
+                      <a id="question-hint-btn" data-activates='question-hint' class="red lighten-1 waves-effect waves-light dropdown-button btn"><i class="material-icons">help</i></a>
                       <!-- Prompt child to use L2 language -->
-                      <a id="language-prompt-btn" class="teal lighten-1 waves-effect waves-light dropdown-button btn" onclick="perform('quiz_prompt_language')"><i class="material-icons">language</i></a>
+                      <a id="language-prompt-btn" data-activates='language-prompt' class="teal lighten-1 waves-effect waves-light dropdown-button btn"><i class="material-icons">language</i></a>
                       <!-- Switch player's turn -->
                       <a id="switch-turn-btn" class="amber waves-effect waves-light btn" onclick="perform('quiz_switch_turn')"><i class="material-icons">autorenew</i></a>
 
                     </p>
 
+                    <!-- Dropdown for encourage level 2 -->
+                    <ul id='encourage-level2' class='dropdown-content'>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2, 0'})">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2, 1'})">two</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2, 2'})">three</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2, 3'})">four</a></li>
+                    </ul>
                     <!-- Dropdown for encourage level 3 -->
                     <ul id='encourage-level3' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('drop_one_down')">one</a></li>
-                      <li><a href="#!" onclick="perform('drop_down_two')">two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3, 1'})">one</a></li>
                       <li class="divider"></li>
-                      <li><a href="#!" onclick="perform('drop_down_3')">three</a></li>
-                      <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                      <li><a href="#!"><i class="material-icons" onclick="perform('cloud')">cloud</i>five</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3, 2'})">two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3, 3'})">three</a></li>
+                    </ul>
+                    <!-- Dropdown for providing hints -->
+                    <ul id='question-hint' class='dropdown-content'>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'normal, where is le nounours in relation to la chaise?'})">message one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, message 2'})">message two</a></li>
+                    </ul>
+                    <!-- Dropdown for prompting the child to use L2 language -->
+                    <ul id='language-prompt' class='dropdown-content'>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'value'}))">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'animated, message 2'})">two</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'normal, what was that in french?'})">three</a></li>
                     </ul>
 
 

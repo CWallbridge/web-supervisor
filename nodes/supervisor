@@ -30,7 +30,6 @@ rospy.init_node('freeplay_sandbox_supervisor')
 blankscreen_publisher = rospy.Publisher('sandtray/signals/blank_interface', Empty, queue_size=1)
 visual_tracking_publisher = rospy.Publisher('sandtray/signals/start_visual_tracking', Empty, queue_size=1)
 prod_quiz_publisher = rospy.Publisher('sandtray/signals/start_prod_quiz', Empty, queue_size=1)
-prod_quiz_num_pub = rospy.Publisher('sandtray/quiz/question', String, queue_size=1)
 items_placement_publisher = rospy.Publisher('sandtray/signals/start_items_placement', Empty, queue_size=1)
 tutorial_publisher = rospy.Publisher('sandtray/signals/start_tutorial', Empty, queue_size=1)
 freeplay_publisher = rospy.Publisher('sandtray/signals/start_freeplay', Empty, queue_size=1)
@@ -40,14 +39,17 @@ sandtraysignalcleardrawing_pub = rospy.Publisher('sandtray/signals/clear_drawing
 sandtraysignalshuffleitems_pub = rospy.Publisher('sandtray/signals/shuffle_items', Empty, queue_size=1)
 sandtraysignalitemstostash_pub = rospy.Publisher('sandtray/signals/items_to_stash', Empty, queue_size=1)
 
+prod_quiz_num_pub = rospy.Publisher('sandtray/quiz/question', String, queue_size=1)
+pub_quiz_uscore = rospy.Publisher('sandtray/quiz/userScore', String, queue_size=1)
+pub_quiz_ascore = rospy.Publisher('sandtray/quiz/agentScore', String, queue_size=1)
+pub_quiz_result = rospy.Publisher('sandtray/quiz/result', String, queue_size=1)
 
 #pub_backchannel = rospy.Publisher("nao/backchannel/standard", String, queue_size=1)
 pub_quiz_answer = rospy.Publisher('nao/prod_quiz/answer', String, queue_size=1)
 pub_quiz_feedback = rospy.Publisher('nao/prod_quiz/feedback', String, queue_size=1)
-pub_quiz_encourage = rospy.Publisher('nao/prod_quiz/encourage', Empty, queue_size=1)
-pub_quiz_uscore = rospy.Publisher('sandtray/quiz/userScore', String, queue_size=1)
-pub_quiz_ascore = rospy.Publisher('sandtray/quiz/agentScore', String, queue_size=1)
-
+pub_quiz_encourage = rospy.Publisher('nao/prod_quiz/encourage', String, queue_size=1)
+pub_quiz_start = rospy.Publisher('nao/prod_quiz/start', Empty, queue_size=1)
+pub_quiz_message = rospy.Publisher('nao/prod_quiz/message', String, queue_size=1)
 pub_quiz_childname = rospy.Publisher('nao/prod_quiz/childname', String, queue_size=1)
 
 from freeplay_sandbox_supervisor.launcher import Launcher
@@ -252,6 +254,7 @@ def process(path, options):
             elif "prod_quiz" in options["action"]:
                 rospy.loginfo("Switching to Production Quiz mode")
                 prod_quiz_publisher.publish(Empty())
+                pub_quiz_start.publish(Empty())
                 return "true"
 
             elif "visualtracking" in options["action"]:
@@ -460,6 +463,7 @@ def process(path, options):
                 #######################################################
 
                 prod_quiz_publisher.publish(Empty())
+                pub_quiz_start.publish(Empty())
                 changequestion("start")
 
                 if(expe.condition == CHILDROBOT):
@@ -523,6 +527,7 @@ def process(path, options):
                 if 'feedback' in options:
                     rospy.loginfo("Give %s feedback in quiz " % options["feedback"][0])
                     pub_quiz_feedback.publish(options["feedback"][0])
+                    pub_quiz_result.publish(options["feedback"][0])
 
                 return 'true'
 
@@ -531,13 +536,14 @@ def process(path, options):
                 if 'answer' in options:
                     rospy.loginfo("Give %s answer to quiz" % options["answer"][0])
                     pub_quiz_answer.publish(options["answer"][0]+','+str(nb_question))
+                    pub_quiz_result.publish(options["answer"][0])
 
                 return 'true'
 
             elif "quiz_encourage" in options["action"]:
 
                 rospy.loginfo("Give encouragement")
-                pub_quiz_encourage.publish(Empty())
+                pub_quiz_encourage.publish(options["encourage"][0])
                 return 'true'
 
             elif "quiz_uscore" in options["action"]:
@@ -551,6 +557,18 @@ def process(path, options):
             elif "child_name" in options["action"]:
                 rospy.loginfo("Updating child name to %s" % options["name"][0])
                 pub_quiz_childname.publish(options["name"][0])
+
+            elif "quiz_switch_turn" in options["action"]:
+                rospy.loginfo("Switching players turn to guess")
+                pub_quiz_message.publish("animated, now it's my turn to try")
+
+            elif "quiz_prompt_language" in options["action"]:
+                rospy.loginfo("Prompting the child to use L2 language")
+                pub_quiz_message.publish(options["language"][0])
+
+            elif "quiz_question_hint" in options["action"]:
+                rospy.loginfo("Provide hints to the child")
+                pub_quiz_message.publish(options["hint"][0])
 
             elif "finalise" in options["action"]:
                 rospy.loginfo("Finalising the experiment")
