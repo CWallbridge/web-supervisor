@@ -285,7 +285,7 @@
 
                       <!-- <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="add_marker('screenshot')"><i class="fa fa-desktop"></i></a> -->
                       <!-- Dropdown Trigger -->
-                      <a id="encourage-level1-btn" class="light-blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage', {'encourage':'1, 0'})"><i class="material-icons">filter_1</i></a>
+                      <a id="encourage-level1-btn" class="light-blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage', {'encourage':1})"><i class="material-icons">filter_1</i></a>
                       <a id="encourage-level2-btn" data-activates='encourage-level2' class="light-blue waves-effect waves-light dropdown-button btn"><i class="material-icons">filter_2</i></a>
                       <a id="encourage-level3-btn" data-activates='encourage-level3' class="light-blue waves-effect waves-light dropdown-button btn"><i class="material-icons">filter_3</i></a>
                       <!-- Where is the teddybear? -->
@@ -299,17 +299,17 @@
 
                     <!-- Dropdown for encourage level 2 -->
                     <ul id='encourage-level2' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2, 0'})">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2, 1'})">two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':{2,1}})">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':{2,1}})">two</a></li>
                       <li class="divider"></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2, 2'})">three</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2, 3'})">four</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':{2,1}})">three</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':{2,1}})">four</a></li>
                     </ul>
                     <!-- Dropdown for encourage level 3 -->
                     <ul id='encourage-level3' class='dropdown-content'>
                       <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3, 1'})">one</a></li>
                       <li class="divider"></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3, 2'})">two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':{'3', '2'}})">two</a></li>
                       <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3, 3'})">three</a></li>
                     </ul>
                     <!-- Dropdown for providing hints -->
@@ -320,9 +320,9 @@
                     <!-- Dropdown for prompting the child to use L2 language -->
                     <ul id='language-prompt' class='dropdown-content'>
                       <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'value'}))">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'animated, message 2'})">two</a></li>
-                      <li class="divider"></li>
                       <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'normal, what was that in french?'})">three</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'animated, message 2'})">two</a></li>
                     </ul>
 
 

@@ -47,7 +47,7 @@ pub_quiz_result = rospy.Publisher('sandtray/quiz/result', String, queue_size=1)
 #pub_backchannel = rospy.Publisher("nao/backchannel/standard", String, queue_size=1)
 pub_quiz_answer = rospy.Publisher('nao/prod_quiz/answer', String, queue_size=1)
 pub_quiz_feedback = rospy.Publisher('nao/prod_quiz/feedback', String, queue_size=1)
-pub_quiz_encourage = rospy.Publisher('nao/prod_quiz/encourage', String, queue_size=1)
+pub_quiz_encourage = rospy.Publisher('nao/prod_quiz/encourage', Empty, queue_size=1)
 pub_quiz_start = rospy.Publisher('nao/prod_quiz/start', Empty, queue_size=1)
 pub_quiz_message = rospy.Publisher('nao/prod_quiz/message', String, queue_size=1)
 pub_quiz_childname = rospy.Publisher('nao/prod_quiz/childname', String, queue_size=1)
@@ -466,7 +466,6 @@ def process(path, options):
                 #######################################################
 
                 prod_quiz_publisher.publish(Empty())
-                pub_quiz_start.publish(Empty())
                 changequestion("start")
 
                 if(expe.condition == CHILDROBOT):
@@ -498,6 +497,7 @@ def process(path, options):
                 time.sleep(2)
 
                 expe.start()
+                pub_quiz_start.publish(Empty())
 
                 return 'true'
 
@@ -545,8 +545,16 @@ def process(path, options):
 
             elif "quiz_encourage" in options["action"]:
 
-                rospy.loginfo("Give encouragement")
-                pub_quiz_encourage.publish(options["encourage"][0])
+                encourage_level = options["encourage"][0]
+
+                rospy.loginfo("Give encouragement %s" % options["encourage"][0])
+
+                if encourage_level == "1":
+                    pub_quiz_encourage.publish(Empty())
+
+                if encourage_level == "2":
+                    pub_quiz_message.publish(options["encourage"][0])
+
                 return 'true'
 
             elif "quiz_uscore" in options["action"]:
