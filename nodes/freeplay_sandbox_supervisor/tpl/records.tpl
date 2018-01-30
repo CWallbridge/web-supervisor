@@ -320,7 +320,7 @@
                     </ul>
                     <!-- Dropdown for prompting the child to use L2 language -->
                     <ul id='language-prompt' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, sous  sur  deh vaugn'}))">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, sous sur deh vaugn'}))">one</a></li>
                       <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, what was that in french?'})">three</a></li>
                       <li class="divider"></li>
                       <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, message 2'})">two</a></li>

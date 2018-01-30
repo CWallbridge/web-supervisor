@@ -543,6 +543,7 @@ def process(path, options):
                 if 'answer' in options:
                     rospy.loginfo("Give %s answer to quiz" % options["answer"][0])
                     pub_quiz_answer.publish(options["answer"][0]+','+str(nb_question))
+                    time.sleep(5)
                     pub_quiz_result.publish(options["answer"][0])
 
                 return 'true'
@@ -576,7 +577,7 @@ def process(path, options):
 
             elif "quiz_switch_turn" in options["action"]:
                 rospy.loginfo("Switching players turn to guess")
-                pub_quiz_message.publish("animated, now it's my turn to try")
+                pub_quiz_message.publish("none, now it's my turn to try")
 
             elif "quiz_prompt_language" in options["action"]:
                 rospy.loginfo("Prompting the child to use L2 language")
