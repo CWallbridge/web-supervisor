@@ -533,8 +533,8 @@ def process(path, options):
 
                 if 'feedback' in options:
                     rospy.loginfo("Give %s feedback in quiz " % options["feedback"][0])
-                    pub_quiz_feedback.publish(options["feedback"][0])
                     pub_quiz_result.publish(options["feedback"][0])
+                    pub_quiz_feedback.publish(options["feedback"][0])
 
                 return 'true'
 
@@ -543,7 +543,7 @@ def process(path, options):
                 if 'answer' in options:
                     rospy.loginfo("Give %s answer to quiz" % options["answer"][0])
                     pub_quiz_answer.publish(options["answer"][0]+','+str(nb_question))
-                    time.sleep(5)
+                    time.sleep(2)
                     pub_quiz_result.publish(options["answer"][0])
 
                 return 'true'
