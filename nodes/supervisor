@@ -52,7 +52,7 @@ pub_quiz_start = rospy.Publisher('nao/prod_quiz/start', Empty, queue_size=1)
 pub_quiz_message = rospy.Publisher('nao/prod_quiz/message', String, queue_size=1)
 pub_quiz_childname = rospy.Publisher('nao/prod_quiz/childname', String, queue_size=1)
 
-pub_placement_start = rospy.publisher('nao/placement/start', Empty, queue_size=1)
+pub_placement_start = rospy.Publisher('nao/placement/start', Empty, queue_size=1)
 
 from freeplay_sandbox_supervisor.launcher import Launcher
 from freeplay_sandbox_supervisor.experiment import Experiment, CHILDCHILD, CHILDROBOT
@@ -497,7 +497,6 @@ def process(path, options):
                 time.sleep(2)
 
                 expe.start()
-                pub_quiz_start.publish(Empty())
 
                 return 'true'
 
@@ -525,6 +524,11 @@ def process(path, options):
 
                 return 'true'
 
+            elif "quiz_explain" in options["action"]:
+                rospy.loginfo("Give explanation of how to play the quiz")
+                pub_quiz_start.publish(Empty())
+                return 'true'
+
             elif "quiz_feedback" in options["action"]:
 
                 if 'feedback' in options:
@@ -545,15 +549,16 @@ def process(path, options):
 
             elif "quiz_encourage" in options["action"]:
 
-                encourage_level = options["encourage"][0]
+                encouragement = options["encourage"][0]
+                level, msg = encouragement.split(':')
+                rospy.loginfo("Give level %s encouragement: %s" % (level, msg))
 
-                rospy.loginfo("Give encouragement %s" % options["encourage"][0])
-
-                if encourage_level == "1":
+                if level == "1":
                     pub_quiz_encourage.publish(Empty())
-
-                if encourage_level == "2":
-                    pub_quiz_message.publish(options["encourage"][0])
+                if level == "2":
+                    pub_quiz_message.publish(msg)
+                if level == "3":
+                    pub_quiz_message.publish(msg)
 
                 return 'true'
 

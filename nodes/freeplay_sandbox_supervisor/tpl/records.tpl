@@ -264,6 +264,7 @@
                     </p>
                     <a id="prod_quiz-btn" class="waves-effect waves-light btn" onclick="start_prod_quiz()">Start Production Quiz</a>
                     <a id="stop-prod_quiz-btn" style="display:none" class="orange darken-4 waves-effect waves-light btn" onclick="stop_prod_quiz()">Stop</a>
+                    <a id="explain-prod_quiz-btn" style="display:none" class="waves-effect waves-light btn" onclick="perform('quiz_explain')">Explain</a>
 
                     <p id="prod_quiz-elapsed-time" style="display:none"></p>
 
@@ -285,7 +286,7 @@
 
                       <!-- <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="add_marker('screenshot')"><i class="fa fa-desktop"></i></a> -->
                       <!-- Dropdown Trigger -->
-                      <a id="encourage-level1-btn" class="light-blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage', {'encourage':1})"><i class="material-icons">filter_1</i></a>
+                      <a id="encourage-level1-btn" class="light-blue waves-effect waves-light dropdown-button btn" onclick="perform('quiz_encourage', {'encourage':'1:'})"><i class="material-icons">filter_1</i></a>
                       <a id="encourage-level2-btn" data-activates='encourage-level2' class="light-blue waves-effect waves-light dropdown-button btn"><i class="material-icons">filter_2</i></a>
                       <a id="encourage-level3-btn" data-activates='encourage-level3' class="light-blue waves-effect waves-light dropdown-button btn"><i class="material-icons">filter_3</i></a>
                       <!-- Where is the teddybear? -->
@@ -299,30 +300,30 @@
 
                     <!-- Dropdown for encourage level 2 -->
                     <ul id='encourage-level2' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':{2,1}})">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':{2,1}})">two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, message 1'})">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, something encouraging'})">two</a></li>
                       <li class="divider"></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':{2,1}})">three</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':{2,1}})">four</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, something encouraging 3'})">three</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, something encouraging 4'})">four</a></li>
                     </ul>
                     <!-- Dropdown for encourage level 3 -->
                     <ul id='encourage-level3' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3, 1'})">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, something encouraging 3'})">one</a></li>
                       <li class="divider"></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':{'3', '2'}})">two</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3, 3'})">three</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, something encouraging 5'})">two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, something encouraging 6'})">three</a></li>
                     </ul>
                     <!-- Dropdown for providing hints -->
                     <ul id='question-hint' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'normal, where is le nounours in relation to la chaise?'})">message one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, message 2'})">message two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'none, where is le nounours in relation to la chaise?'})">message one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'none, message 2'})">message two</a></li>
                     </ul>
                     <!-- Dropdown for prompting the child to use L2 language -->
                     <ul id='language-prompt' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'value'}))">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'normal, what was that in french?'})">three</a></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, sous  sur  deh vaugn'}))">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, what was that in french?'})">three</a></li>
                       <li class="divider"></li>
-                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'animated, message 2'})">two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, message 2'})">two</a></li>
                     </ul>
 
 
@@ -740,6 +741,7 @@ function start_prod_quiz() {
     $("#prod_quiz-btn").addClass('disabled');
 
     $("#stop-prod_quiz-btn").removeClass('disabled');
+    $("#explain-prod_quiz-btn").removeClass('disabled');
     $("#prod_quiz-btn").html('Starting...');
 
     var robot_ip = $("#robot-ip").val();
@@ -762,6 +764,7 @@ function start_prod_quiz() {
             $("#prod_quiz-elapsed-time").show();
 
             $("#stop-prod_quiz-btn").show();
+            $("#explain-prod_quiz-btn").show();
             $("#prod-btns").show();
             $("#quiz-btns").show();
             $("#score-info").show();
@@ -774,6 +777,8 @@ function stop_prod_quiz() {
 
     $("#stop-prod_quiz-btn").addClass('disabled');
     $("#stop-prod_quiz-btn").html('Stopping...');
+    $("#explain-prod_quiz-btn").addClass('disabled');
+    $("#explain-prod_quiz-btn").hide();
     $("#prod-btns").hide();
     $("#quiz-btns").hide();
     $("#score-info").hide();
