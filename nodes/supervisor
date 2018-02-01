@@ -25,6 +25,8 @@ import json
 
 import subprocess
 
+import random
+
 rospy.init_node('freeplay_sandbox_supervisor')
 
 blankscreen_publisher = rospy.Publisher('sandtray/signals/blank_interface', Empty, queue_size=1)
@@ -577,7 +579,9 @@ def process(path, options):
 
             elif "quiz_switch_turn" in options["action"]:
                 rospy.loginfo("Switching players turn to guess")
-                pub_quiz_message.publish("none, now it's my turn to try")
+                msg = random.choice(["How about I have a guess?", "It will be my turn now to try"])
+                msg = "none, " + msg
+                pub_quiz_message.publish(msg)
 
             elif "quiz_prompt_language" in options["action"]:
                 rospy.loginfo("Prompting the child to use L2 language")

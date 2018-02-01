@@ -300,30 +300,27 @@
 
                     <!-- Dropdown for encourage level 2 -->
                     <ul id='encourage-level2' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, message 1'})">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, something encouraging'})">two</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, something encouraging 3'})">three</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, something encouraging 4'})">four</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, Can you say where the teddy bear is?'})">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, You think you can guess where you think it is?'})">two</a></li>
+                      <!-- <li class="divider"></li> -->
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, Where is le nounours in relation to la chaise?'})">three</a></li>
                     </ul>
                     <!-- Dropdown for encourage level 3 -->
                     <ul id='encourage-level3' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, something encouraging 3'})">one</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, something encouraging 5'})">two</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, something encouraging 6'})">three</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Could it be sous? or sur? or deh vaugn?'})">one</a></li>
+                      <!-- <li class="divider"></li> -->
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Try one of the words you learned today. Sur. Sous. Deh vaugn.'})">two</a></li>
+                      <!-- <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, something encouraging 6'})">three</a></li> -->
                     </ul>
                     <!-- Dropdown for providing hints -->
                     <ul id='question-hint' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'none, where is le nounours in relation to la chaise?'})">message one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'none, message 2'})">message two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, You want to have a go at this?'})">message two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'none, How about I have a go?'})">message one</a></li>
                     </ul>
                     <!-- Dropdown for prompting the child to use L2 language -->
                     <ul id='language-prompt' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, sous sur deh vaugn'})">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, what was that in french?'})">three</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, message 2'})">two</a></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'animated, sous. sur. deh vaugn.'})">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, can you said what was that in french?'})">three</a></li>
                     </ul>
 
 
