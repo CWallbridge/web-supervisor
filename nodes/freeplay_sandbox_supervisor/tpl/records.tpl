@@ -228,6 +228,7 @@
                     <a id="items-placement-btn" class="waves-effect waves-light btn" onclick="start_items_placement()">Start Items placement</a>
                     <a id="stop-items-placement-btn" style="display:none" class="orange darken-4 waves-effect waves-light btn" onclick="stop_items_placement()">Stop</a>
                     <a class="waves-effect waves-teal btn-flat" onclick="show_prod_quiz()">Skip</a>
+                    <a id="explain-items-placement-btn" style="display:none" class="waves-effect waves-light btn" onclick="perform('item_placement_explain')">Explain</a>
                     <p id="items-placement-btns" style="display:none">
                     <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="perform('screenshot',{'prefix':'items-placement'})"><i class="fa fa-desktop"></i> screenshot</a>
                     </p>
@@ -305,14 +306,14 @@
                       <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, Can you try one of the words you learned today?'})">Try a word</a></li>
                       <!-- <li class="divider"></li> -->
                       <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:animated, Can you say where the teddy bear is?'})">Say.. teddy bear?</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, Tell me where is the teddy bear?'})">Tell me.. teddy bear?</a></li>                                            
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, Tell me where is the teddy bear?'})">Tell me.. teddy bear?</a></li>
                     </ul>
                     <!-- Dropdown for encourage level 3 -->
                     <ul id='encourage-level3' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Le nounours is?'})">Nounours</a></li>                      
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Le nounours is?'})">Nounours</a></li>
                       <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:animated, Where is le nounours in relation to la chaise?'})">Nounours-Chaise</a></li>
                       <!-- <li class="divider"></li> -->
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Could it be sous? or sur? or deh vaugn?'})">Sous-Sur-Devant</a></li>                      
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Could it be sous? or sur? or deh vaugn?'})">Sous-Sur-Devant</a></li>
                     </ul>
                     <!-- Dropdown for providing hints -->
                     <ul id='question-hint' class='dropdown-content'>
@@ -634,6 +635,8 @@ function start_items_placement() {
     $("#items-placement-btn").addClass('disabled');
     $("#items-placement-btn").html('Starting...');
     $("#stop-items-placement-btn").removeClass('disabled');
+    $("#explain-items-placement-btn").removeClass('disabled');
+
 
     var robot_ip = $("#robot-ip").val();
 
@@ -645,6 +648,7 @@ function start_items_placement() {
             $("#items-placement-btn").html('Items placement: started');
             $("#items-placement-btns").show();
             $("#stop-items-placement-btn").show();
+            $("#explain-items-placement-btn").show();
           }
         });
 }
@@ -655,6 +659,9 @@ function stop_items_placement() {
     $("#stop-items-placement-btn").addClass('disabled');
     $("#stop-items-placement-btn").html('Stopping...');
 
+    $("#explain-items-placement-btn").addClass('disabled');
+
+
     $.ajax({
         url:'{{path}}?action=stop_items_placement',
         dataType: "json",
@@ -662,6 +669,7 @@ function stop_items_placement() {
         success: function(done) {
             $("#items-placement-btn").html('Items placement: finished');
             $("#stop-items-placement-btn").hide();
+            $("#explain-items-placement-btn").hide();
             show_prod_quiz();
             }
         });

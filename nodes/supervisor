@@ -363,7 +363,6 @@ def process(path, options):
                 launcher.start()
 
                 items_placement_publisher.publish(Empty())
-                pub_placement_start.publish(Empty())
                 return 'true'
 
             elif "stop_items_placement" in options["action"]:
@@ -378,6 +377,11 @@ def process(path, options):
                 prepare_launcher = getlauncher("prepare_recording")
                 prepare_launcher.shutdown()
 
+                return 'true'
+
+            elif "item_placement_explain" in options["action"]:
+                rospy.loginfo("Give explanation for the item placement")
+                pub_placement_start.publish(Empty())
                 return 'true'
 
             elif "start_freeplay" in options["action"]:
