@@ -300,27 +300,31 @@
 
                     <!-- Dropdown for encourage level 2 -->
                     <ul id='encourage-level2' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, Can you say where the teddy bear is?'})">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, You think you can guess where you think it is?'})">two</a></li>
+					  <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, You think you can guess where it is?'})">You can guess</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:animated, I know you know this one?'})">You know this</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, Can you try one of the words you learned today?'})">Try a word</a></li>
                       <!-- <li class="divider"></li> -->
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, Where is le nounours in relation to la chaise?'})">three</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:animated, Can you say where the teddy bear is?'})">Say.. teddy bear?</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'2:none, Tell me where is the teddy bear?'})">Tell me.. teddy bear?</a></li>                                            
                     </ul>
                     <!-- Dropdown for encourage level 3 -->
                     <ul id='encourage-level3' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Could it be sous? or sur? or deh vaugn?'})">one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Le nounours is?'})">Nounours</a></li>                      
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:animated, Where is le nounours in relation to la chaise?'})">Nounours-Chaise</a></li>
                       <!-- <li class="divider"></li> -->
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Try one of the words you learned today. Sur. Sous. Deh vaugn.'})">two</a></li>
-                      <!-- <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, something encouraging 6'})">three</a></li> -->
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Could it be sous? or sur? or deh vaugn?'})">Sous-Sur-Devant</a></li>                      
                     </ul>
                     <!-- Dropdown for providing hints -->
                     <ul id='question-hint' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, You want to have a go at this?'})">message two</a></li>
-                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'none, How about I have a go?'})">message one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, You want to have a go at this?'})">You have a go</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, Can you try again?'})">Try again</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, How about I have a go?'})">I have a go</a></li>
                     </ul>
                     <!-- Dropdown for prompting the child to use L2 language -->
                     <ul id='language-prompt' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'animated, sous. sur. deh vaugn.'})">one</a></li>
-                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'none, can you said what was that in french?'})">three</a></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'animated, Remember the words we learn: sous. sur. deh vaugn.'})">Remember words</a></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'animated, Try one of the words you learned today. Sur. Sous. Deh vaugn.'})">Try words french</a></li>
+                      <li><a href="#!" onclick="perform('quiz_prompt_language', {'language':'animated, Can you said what was that in french?'})">in French?</a></li>
                     </ul>
 
 
