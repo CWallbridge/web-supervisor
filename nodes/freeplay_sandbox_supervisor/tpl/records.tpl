@@ -310,7 +310,7 @@
                     </ul>
                     <!-- Dropdown for encourage level 3 -->
                     <ul id='encourage-level3' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Luh noo nour is?'})">Nounours</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Luh noo nour, est?'})">Nounours</a></li>
                       <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:animated, Where is Luh noo nour in relation to la chaise?'})">Nounours-Chaise</a></li>
                       <!-- <li class="divider"></li> -->
                       <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Could it be sous? or sur? or deh vaugn?'})">Sous-Sur-Devant</a></li>
