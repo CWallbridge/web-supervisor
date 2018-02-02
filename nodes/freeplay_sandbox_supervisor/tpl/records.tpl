@@ -227,8 +227,8 @@
                     </p>
                     <a id="items-placement-btn" class="waves-effect waves-light btn" onclick="start_items_placement()">Start Items placement</a>
                     <a id="stop-items-placement-btn" style="display:none" class="orange darken-4 waves-effect waves-light btn" onclick="stop_items_placement()">Stop</a>
+                    <a id="explain-items-placement-btn" style="display:none" class="waves-effect waves-light btn" onclick="perform('item_placement_explain')">Begin</a>
                     <a class="waves-effect waves-teal btn-flat" onclick="show_prod_quiz()">Skip</a>
-                    <a id="explain-items-placement-btn" style="display:none" class="waves-effect waves-light btn" onclick="perform('item_placement_explain')">Explain</a>
                     <p id="items-placement-btns" style="display:none">
                     <a id="screenshot-btn" class="amber waves-effect waves-light btn" onclick="perform('screenshot',{'prefix':'items-placement'})"><i class="fa fa-desktop"></i> screenshot</a>
                     </p>
@@ -310,8 +310,8 @@
                     </ul>
                     <!-- Dropdown for encourage level 3 -->
                     <ul id='encourage-level3' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Le nounours is?'})">Nounours</a></li>
-                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:animated, Where is le nounours in relation to la chaise?'})">Nounours-Chaise</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Luh noo nour is?'})">Nounours</a></li>
+                      <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:animated, Where is Luh noo nour in relation to la chaise?'})">Nounours-Chaise</a></li>
                       <!-- <li class="divider"></li> -->
                       <li><a href="#!" onclick="perform('quiz_encourage', {'encourage':'3:none, Could it be sous? or sur? or deh vaugn?'})">Sous-Sur-Devant</a></li>
                     </ul>
