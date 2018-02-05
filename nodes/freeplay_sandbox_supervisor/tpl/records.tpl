@@ -317,7 +317,9 @@
                     </ul>
                     <!-- Dropdown for providing hints -->
                     <ul id='question-hint' class='dropdown-content'>
-                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, You want to have a go at this?'})">You have a go</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, Now you try this one?'})">Try this one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, How about this one?'})">How about this one</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, Keep going.'})">Keep going</a></li>
                       <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, Can you try again?'})">Try again</a></li>
                       <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, How about I have a go?'})">I have a go</a></li>
                     </ul>
