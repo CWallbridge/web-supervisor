@@ -322,6 +322,7 @@
                       <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, Keep going.'})">Keep going</a></li>
                       <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, Can you try again?'})">Try again</a></li>
                       <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, How about I have a go?'})">I have a go</a></li>
+                      <li><a href="#!" onclick="perform('quiz_question_hint', {'hint':'animated, Ok. lets move to the next question'})">Next</a></li>
                     </ul>
                     <!-- Dropdown for prompting the child to use L2 language -->
                     <ul id='language-prompt' class='dropdown-content'>
@@ -816,9 +817,9 @@ function answer_quiz(player, answer) {
     if (answer === "correct"){
       change_score(player)
     }
-    if (condition === "childrobot") {
-      perform('quiz_feedback',{'feedback':answer})
-    }
+    // if (condition === "childrobot") {
+    // }
+    perform('quiz_feedback',{'feedback':answer})
   }
   if (player === "robot") {
     perform('quiz_answer',{'answer':answer})
