@@ -58,6 +58,8 @@ pub_placement_start = rospy.Publisher('nao/placement/start', Empty, queue_size=1
 pub_quiz_childname = rospy.Publisher('nao/prod_quiz/childname', String, queue_size=1)
 pub_quiz_agentname = rospy.Publisher('sandtray/quiz/agentname', String, queue_size=1)
 
+sup_childname = ""
+
 from freeplay_sandbox_supervisor.launcher import Launcher
 from freeplay_sandbox_supervisor.experiment import Experiment, CHILDCHILD, CHILDROBOT
 
@@ -365,6 +367,8 @@ def process(path, options):
                 launcher.start()
 
                 items_placement_publisher.publish(Empty())
+                time.sleep(2)
+                #pub_quiz_childname.publish(sup_childname)
                 return 'true'
 
             elif "stop_items_placement" in options["action"]:
@@ -383,6 +387,8 @@ def process(path, options):
 
             elif "item_placement_explain" in options["action"]:
                 rospy.loginfo("Give explanation for the item placement")
+                pub_quiz_childname.publish(sup_childname)
+                time.sleep(0.5)
                 pub_placement_start.publish(Empty())
                 return 'true'
 
@@ -503,8 +509,10 @@ def process(path, options):
                 record_launcher.setarg("duration", "40m")
                 record_launcher.start()
                 time.sleep(2)
-
+                
                 expe.start()
+
+                #pub_quiz_childname.publish(sup_childname)
 
                 return 'true'
 
@@ -534,6 +542,8 @@ def process(path, options):
 
             elif "quiz_explain" in options["action"]:
                 rospy.loginfo("Give explanation of how to play the quiz")
+                pub_quiz_childname.publish(sup_childname)
+                time.sleep(0.5)
                 pub_quiz_start.publish(Empty())
                 return 'true'
 
@@ -577,11 +587,14 @@ def process(path, options):
                 pub_quiz_uscore.publish(options["uscore"][0])
 
             elif "quiz_ascore" in options["action"]:
+                time.sleep(2)
                 rospy.loginfo("Updating agent score to %s" % options["ascore"][0])
                 pub_quiz_ascore.publish(options["ascore"][0])
 
             elif "child_name" in options["action"]:
                 rospy.loginfo("Updating child name to %s" % options["child"][0])
+                global sup_childname
+                sup_childname = options["child"][0]
                 pub_quiz_childname.publish(options["child"][0])
 
                 if(expe.condition == CHILDROBOT):
@@ -611,7 +624,8 @@ def process(path, options):
 
             elif "quiz_question_hint" in options["action"]:
                 rospy.loginfo("Provide hints to the child")
-                pub_quiz_message.publish(options["hint"][0])
+                msg = sup_childname + options["hint"][0]
+                pub_quiz_message.publish(msg)
 
             elif "finalise" in options["action"]:
                 rospy.loginfo("Finalising the experiment")
