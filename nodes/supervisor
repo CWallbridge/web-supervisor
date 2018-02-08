@@ -52,9 +52,11 @@ pub_quiz_feedback = rospy.Publisher('nao/prod_quiz/feedback', String, queue_size
 pub_quiz_encourage = rospy.Publisher('nao/prod_quiz/encourage', Empty, queue_size=1)
 pub_quiz_start = rospy.Publisher('nao/prod_quiz/start', Empty, queue_size=1)
 pub_quiz_message = rospy.Publisher('nao/prod_quiz/message', String, queue_size=1)
-pub_quiz_childname = rospy.Publisher('nao/prod_quiz/childname', String, queue_size=1)
 
 pub_placement_start = rospy.Publisher('nao/placement/start', Empty, queue_size=1)
+
+pub_quiz_childname = rospy.Publisher('nao/prod_quiz/childname', String, queue_size=1)
+pub_quiz_agentname = rospy.Publisher('sandtray/quiz/agentname', String, queue_size=1)
 
 from freeplay_sandbox_supervisor.launcher import Launcher
 from freeplay_sandbox_supervisor.experiment import Experiment, CHILDCHILD, CHILDROBOT
@@ -540,6 +542,7 @@ def process(path, options):
                 if 'feedback' in options:
                     rospy.loginfo("Give %s feedback in quiz " % options["feedback"][0])
                     pub_quiz_result.publish(options["feedback"][0])
+                    time.sleep(2)
                     pub_quiz_feedback.publish(options["feedback"][0])
 
                 return 'true'
@@ -578,8 +581,23 @@ def process(path, options):
                 pub_quiz_ascore.publish(options["ascore"][0])
 
             elif "child_name" in options["action"]:
-                rospy.loginfo("Updating child name to %s" % options["name"][0])
-                pub_quiz_childname.publish(options["name"][0])
+                rospy.loginfo("Updating child name to %s" % options["child"][0])
+                pub_quiz_childname.publish(options["child"][0])
+
+                if(expe.condition == CHILDROBOT):
+                    rospy.loginfo("Updating agent name to Chapman")
+                    pub_quiz_agentname.publish("Chapman")
+
+            elif "agent_name" in options["action"]:
+
+                # if(expe.condition == CHILDROBOT):
+                #     rospy.loginfo("Updating agent name to Chapman")
+                #     pub_quiz_agentname.publish("Chapman")
+                #
+                # else:
+                rospy.loginfo("Updating agent name to %s" % options["agent"][0])
+                pub_quiz_agentname.publish(options["agent"][0])
+
 
             elif "quiz_switch_turn" in options["action"]:
                 rospy.loginfo("Switching players turn to guess")

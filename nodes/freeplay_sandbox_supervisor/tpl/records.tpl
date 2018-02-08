@@ -51,7 +51,7 @@
                                 <p>
                                   <div class="col s12">
                                     <label for="purple-name">Name</label>
-                                    <input name="purple-child-name" class="input-field inline" type="text"  id="purple-name" onchange="perform('child_name', {'name':this.value})" />
+                                    <input name="purple-child-name" class="input-field inline" type="text"  id="purple-name" onchange="perform('child_name', {'child':this.value})" />
                                   </div>
                                 </p>
 
@@ -122,6 +122,13 @@
                                 <h2 class="center amber-text"><i class="large material-icons">person_pin</i></h2>
                                 <strong>ID: <span id="yellow-id"></span></strong>
                                 <h5>General</h5>
+                                <p>
+                                  <div class="col s12">
+                                    <label for="yellow-name">Name</label>
+                                    <input name="yellow-child-name" class="input-field inline" type="text" value="Charlotte"  id="yellow-name" onchange="perform('agent_name', {'agent':this.value})" />
+                                  </div>
+                                </p>
+
                                 <p>
                                 <input name="yellow-gender" checked type="radio" value="male" id="yellow-male" />
                                 <label for="yellow-male">Male</label>
