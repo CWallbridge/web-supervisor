@@ -509,7 +509,7 @@ def process(path, options):
                 record_launcher.setarg("duration", "40m")
                 record_launcher.start()
                 time.sleep(2)
-                
+
                 expe.start()
 
                 #pub_quiz_childname.publish(sup_childname)
@@ -623,9 +623,11 @@ def process(path, options):
                 pub_quiz_message.publish(options["language"][0])
 
             elif "quiz_question_hint" in options["action"]:
-                rospy.loginfo("Provide hints to the child")
-                msg = sup_childname + options["hint"][0]
-                pub_quiz_message.publish(msg)
+                hint = options["hint"][0]
+                ani, msg = hint.split(',')
+                msg = sup_childname + msg
+                rospy.loginfo("Provide hints to the child: %s" % msg)
+                pub_quiz_message.publish(ani + ", " + msg)
 
             elif "finalise" in options["action"]:
                 rospy.loginfo("Finalising the experiment")
